@@ -67,7 +67,7 @@ URP++-Repository/
   "dark": true,                 // 能力声明：是否支持暗色模式
   "dynamic": true,              // 能力声明：是否支持动态配色（种子色）
   "palettes": true,             // 能力声明：是否支持固定调色板
-  "cardCss": "…",               // 主题（官方独立 + 第三方）必填；主插件不再内置独立主题卡片样式，一律由 catalog cardCss 提供（须含暗色变体）
+  "cardCss": "…",               // 第三方主题必填；官方4独立主题由主插件内置样式兑底（catalog cardCss 作完整规范示例，主插件不注入）
   "downloads": 1234,            // 下载量（可选，无则不显示）
 
   // plugin 专属
@@ -124,8 +124,8 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { 
 
 **官方与第三方**：
 
-- **官方独立主题**（flat / organic / brutal / neu）的卡片样式**已从主插件 `settings.css` 脱离**，统一由 catalog 的 `cardCss` 提供（含 `html.urppp-theme-dark` 暗色变体）。主插件不再内置这四套卡片样式，打开设置 / 商店时按需注入 catalog cardCss。**主插件仅内置 apple / editorial 两个主题的卡片样式**（这两个不在 catalog）。
-- **所有主题**（官方独立 + 第三方）的卡片样式均由 catalog `cardCss` 驱动；`cardCss` 必须完整（含暗色变体）。
+- **官方独立主题**（flat / organic / brutal / neu）的卡片样式由主插件 `settings.css` per-skin **内置**（亮色 / 暗色 / 主按钮 / hover 动效完整）。其 catalog `cardCss` 作为**完整规范示例**存在（含 hover / 暗色变体），主插件检测到主题属于官方（在 `SKIN_CATALOG` 内）时**不注入**，以免覆盖内置样式。
+- **第三方主题**不在 `SKIN_CATALOG`，主插件会注入 catalog 的 `cardCss`，因此第三方**必须按完整规范书写**（含 hover 动效、暗色变体、is-current、名字/描述颜色），否则商店卡片效果会**明显退化**（丢失 hover 动效 / 状态色）。
 
 > 书写参考：可直接对照官方主题的完整 `cardCss`（catalog 中 flat / organic / brutal / neu 条目），示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md#14-卡片样式cardcss第三方必填)。
 
@@ -255,9 +255,9 @@ window.__urppppAssist = {
 
 ### 5.4 卡片样式归属
 
-- 官方独立主题（flat / organic / brutal / neu）：卡片样式由 catalog `cardCss` 提供，主插件不再内置。
+- 官方独立主题（flat / organic / brutal / neu）：卡片样式由主插件 `settings.css` per-skin **内置**（完整含 hover），catalog `cardCss` 作规范示例（主插件不注入）。
 - 内置主题（apple / editorial）：卡片样式由主插件 `settings.css` per-skin 内置（不在 catalog）。
-- 第三方主题：卡片样式由 catalog `cardCss` 提供。
+- 第三方主题：卡片样式由 catalog `cardCss` 提供，必须完整书写。
 
 ---
 
@@ -273,7 +273,7 @@ window.__urppppAssist = {
 |---|---|---|
 | 主题 CSS 以 `button:not(...)` 宽泛覆盖 | 应用主题后商店按钮被刷成该主题样式 | 按钮复用 `urppp-skin-apply`（被 `:not(.urppp-skin-apply)` 排除） |
 | 暗色按钮规则缺失 `background` | 按钮背景继承全局 `--input-bg`（当前主题）而异常 | 暗色按钮补 `background: transparent` 或复用 apply 样式 |
-| catalog `cardCss` 注入晚于主插件样式 | 覆盖主插件暗色变体，暗色卡片异常 | 独立主题卡片样式统一由 catalog cardCss 提供（含暗色变体），主插件不再内置 |
+| catalog `cardCss` 注入晚于主插件样式 | 覆盖主插件暗色变体，暗色卡片异常 | 官方主题由主插件内置样式兑底、不注入 catalog cardCss；第三方需完整 cardCss（含暗色变体） |
 | catalog 请求无超时 | 网络异常时商店停留在加载态 | 使用 `Promise.allSettled` + 5 秒超时 |
 | 应用 / 删除主题后不刷新 | 「使用中」等状态不更新，删除正用主题残留缓存 | 应用 / 删除后立即刷新列表；删除正用主题回退默认主题 |
 

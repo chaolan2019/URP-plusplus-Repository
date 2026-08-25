@@ -47,11 +47,11 @@
   "dark": true,
   "dynamic": false,
   "palettes": false,
-  "cardCss": "…"   // 官方独立主题含完整 cardCss（亮/暗 + 主按钮，见 1.4）。主插件不再内置，统一由 catalog cardCss 驱动
+  "cardCss": "…"   // 官方独立主题含完整 cardCss（亮/暗 + hover + 主按钮，见 1.4）。主插件对官方主题用内置样式兑底、不注入；第三方必填且须完整
 }
 ```
 
-> 官方独立主题（flat / organic / brutal / neu）的 catalog 条目**含** `cardCss`，且已**从主插件脱离**——主插件不再内置这四套卡片样式，统一由 catalog `cardCss` 驱动（主插件仅保留 apple / editorial 内置）。第 1.4 节展示完整 cardCss 写法（所有主题必填，含暗色变体）。
+> 官方独立主题（flat / organic / brutal / neu）的 catalog 条目**含** `cardCss`（作完整规范示例）；主插件对官方主题用内置 `settings.css` 样式兑底、**不注入** cardCss（避免覆盖内置 hover 动效/状态）。第 1.4 节展示完整 cardCss 写法（第三方必填且须完整，含 hover 动效/暗色变体）。
 
 ### 1.3 主题产物（organic.css）
 
@@ -227,7 +227,7 @@ your-repo/
 - [ ] `entry` 至少 2 个 URL 保证降级可用。
 - [ ] 第三方主题在 `cardCss` 提供卡片底色与主按钮样式（不含次要按钮）。
 - [ ] 能力声明（`dark` / `dynamic` / `palettes`）与实际实现一致。
-- [ ] 独立主题（官方 flat/organic/brutal/neu + 第三方）均在 `cardCss` 提供完整卡片样式（含暗色变体）。
+- [ ] 第三方主题在 `cardCss` 提供完整卡片样式（含 hover 动效 / is-current / 暗色变体）；官方主题由主插件内置兑底。
 
 **插件（plugin）**
 - [ ] catalog 含 `type: plugin` 与 `allowJS: true`。
