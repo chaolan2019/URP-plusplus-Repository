@@ -31,7 +31,8 @@
     "https://cdn.jsdelivr.net/gh/…@main/themes/flat.css",
     "https://gh-proxy.com/https://raw.githubusercontent.com/…/themes/flat.css"
   ],
-  "preview": ["#FFFFFF", "#000000", "#4A4A4A"]   // 主题预览色
+  "preview": ["#FFFFFF", "#000000", "#4A4A4A"],   // 主题预览色
+  "cardCss": "…"                // 可选：主题卡片展示样式（作用于 .urppp-skin-card[data-skin="<id>"]）
 }
 ```
 
@@ -53,3 +54,10 @@
 - 主题只允许注入 CSS（`html[data-urppp-skin="<id>"]` 前缀），不执行任意 JS。
 - 需要脚本能力的走 plugin 类型，并声明 `allowJS`。
 - 版本号用语义化版本（用于「检查更新」对比）。
+- 主题卡片样式建议在 catalog 项里带 `cardCss`（作用于 `.urppp-skin-card[data-skin="<id>"]`，用于商店展示）。
+- **暗色适配**：若主题支持暗色模式（schema 项里有 `dark: true`），`cardCss` 必须同时提供暗色变体，用 `html.urppp-theme-dark` 前缀包裹：
+  ```css
+  .urppp-skin-card[data-skin="mytheme"]{ /* 亮色卡片 */ }
+  html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"]{ /* 暗色卡片 */ }
+  ```
+  暗色变体需同步覆盖卡片底色、文字色、主按钮（`.urppp-skin-apply`）与次要按钮（`.urppp-set-btn.ghost`），否则暗色模式下会残留亮色样式。
