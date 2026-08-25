@@ -143,13 +143,13 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 .urppp-skin-card[data-skin="organic"] .urppp-skin-apply,
 .urppp-skin-card[data-skin="organic"] .urppp-store-repo,
 .urppp-skin-card[data-skin="organic"] .urppp-store-del{
-  background:#5C4033; color:#fff;
-  border:none; border-radius:999px; box-shadow:none; transition:background 150ms,transform 150ms;
+  background:#FFFCF7; color:#5C4033;
+  border:1px solid #8B9D77; border-radius:999px; box-shadow:none; transition:background 150ms,color 150ms;
 }
 .urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover,
 .urppp-skin-card[data-skin="organic"] .urppp-store-repo:hover,
-.urppp-skin-card[data-skin="organic"] .urppp-store-del:hover{ background:#4A3329; transform:translateY(-1px); }
-.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{ background:#4A3329; }
+.urppp-skin-card[data-skin="organic"] .urppp-store-del:hover{ background:#5C4033; color:#fff; }
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{ background:#5C4033; color:#fff; border-color:#5C4033; }
 
 /* 暗色变体（dark: true 时必提供，且同样覆盖次要按钮） */
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"]{
@@ -160,14 +160,16 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-desc{ co
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply,
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-repo,
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-del{
-  background:#6F7D5A; color:#1C1712; border-color:#8B9D77;
+  background:#2B231D; color:#B9C99A; border-color:#6F8F52;
 }
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover,
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-repo:hover,
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-del:hover{ background:#5C4033; color:#fff; }
 ```
 
 > **重要**：cardCss 若漏写 `.urppp-store-repo` / `.urppp-store-del` 或 hover 动效，脱离主插件内置后「仓库/删除」按钮会显示默认颜色、且无悬停动画（cardCss 驱动下没有内置兜底）。务必完整书写，可对照 catalog 官方主题的 `cardCss`。
-```
 
-要点：卡片需预留 `padding-bottom:52px` 给底部按钮；`is-current` / `hover` 状态可选择性补充；支持暗色时暗色变体同步覆盖卡片底、文字与主按钮。
+要点：卡片需预留 `padding-bottom:52px` 给底部按钮；`hover` / `is-current` **必写**（不是可选）；支持暗色时暗色变体同步覆盖卡片底、文字、主按钮与次要按钮。
 
 ---
 

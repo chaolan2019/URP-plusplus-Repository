@@ -126,6 +126,8 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { 
 
 - **官方独立主题**（flat / organic / brutal / neu）的卡片样式**已从主插件 `settings.css` 脱离**，统一由 catalog 的 `cardCss` 提供。`cardCss` 必须**完整**：覆盖卡片底色/文字色、主按钮 `.urppp-skin-apply`、**次要按钮 `.urppp-store-repo` / `.urppp-store-del`（仓库/删除，须跟主按钮同主题色）**、hover 动效、`is-current`，以及 `html.urppp-theme-dark` 暗色变体。主插件打开设置/商店时按需注入 catalog cardCss（官方与第三方一致）。
 
+> **cardCss 会在下载主题时被主插件缓存到本地**（`GM urppp_card_css_<id>`），皮肤卡 / 主题选择 / 商店优先使用本地缓存（不依赖线上拉取，避免先残缺后正常）。**因此 cardCss 必须完整**——若不完整，本地缓存后皮肤卡会一直残缺。
+
 > **注意**：脱离后若 `cardCss` 未写全（缺次要按钮色 / hover 动效 / 暗色变体），商店卡片会明显退化（按钮默认色、无悬停动效、暗色残留）。**完整书写是硬性要求**，可对照官方 catalog 的 `cardCss` 或 THEME_EXAMPLE。
 
 > 书写参考：可直接对照官方主题的完整 `cardCss`（catalog 中 flat / organic / brutal / neu 条目），示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md#14-卡片样式cardcss第三方必填)。
