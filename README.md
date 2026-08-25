@@ -3,6 +3,8 @@
 本仓库是 **SCU URP++ 主插件**的「主题 / 插件商店」内容源。主插件从这里拉取 `catalog.json` 获取可下载列表。
 
 > **投稿 / 开发前请先读 [DEV_GUIDELINES.md](./DEV_GUIDELINES.md)**：完整的 catalog 字段、主题/插件投稿、卡片样式、暗色适配、CSS 开发规范与常见坑。
+>
+> **主题投稿示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md)**（以「自然有机」为例的完整投稿示范）。
 
 ## 目录结构
 
