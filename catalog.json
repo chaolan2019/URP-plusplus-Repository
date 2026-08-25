@@ -17,7 +17,12 @@
         "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/flat.css",
         "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/flat.css"
       ],
-      "preview": ["#FFFFFF", "#000000", "#4A4A4A"]
+      "preview": [
+        "#FFFFFF",
+        "#000000",
+        "#4A4A4A"
+      ],
+      "cardCss": ".urppp-skin-card[data-skin=\"flat\"]{background:#fff;border-radius:0;border:none;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply{background:#000;color:#fff;border-radius:0;margin-left:0;left:12px;right:auto}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply.is-current{background:#333}"
     },
     {
       "id": "organic",
@@ -33,7 +38,12 @@
         "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/organic.css",
         "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/organic.css"
       ],
-      "preview": ["#FAF6F1", "#5C4033", "#8B9D77"]
+      "preview": [
+        "#FAF6F1",
+        "#5C4033",
+        "#8B9D77"
+      ],
+      "cardCss": ".urppp-skin-card[data-skin=\"organic\"]{background:#FAF6F1;border-radius:16px;border:1px solid #E8DFD2;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply{background:#8B9D77;color:#fff;border-radius:999px;margin-left:0;left:12px;right:auto}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply.is-current{background:#5C4033}"
     },
     {
       "id": "brutal",
@@ -49,7 +59,12 @@
         "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/brutal.css",
         "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/brutal.css"
       ],
-      "preview": ["#FFFFFF", "#000000", "#CCFF00"]
+      "preview": [
+        "#FFFFFF",
+        "#000000",
+        "#CCFF00"
+      ],
+      "cardCss": ".urppp-skin-card[data-skin=\"brutal\"]{background:#fff;border-radius:0;border:3px solid #000;box-shadow:5px 5px 0 #000!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply{background:#000;color:#CCFF00;border-radius:0;border:2px solid #000;box-shadow:3px 3px 0 #000;margin-left:0;left:12px;right:auto}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply.is-current{background:#CCFF00;color:#000}"
     },
     {
       "id": "neu",
@@ -65,7 +80,12 @@
         "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/neu.css",
         "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/neu.css"
       ],
-      "preview": ["#E0E5EC", "#B8BCC2", "#FFFFFF"]
+      "preview": [
+        "#E0E5EC",
+        "#B8BCC2",
+        "#FFFFFF"
+      ],
+      "cardCss": ".urppp-skin-card[data-skin=\"neu\"]{background:#E0E5EC;border-radius:18px;border:none;box-shadow:6px 6px 12px #B8BCC2,-6px -6px 12px #fff!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply{background:#E0E5EC;color:#4F5258;border-radius:14px;box-shadow:4px 4px 8px #B8BCC2,-4px -4px 8px #fff;border:none;margin-left:0;left:12px;right:auto}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply.is-current{color:#2563eb}"
     },
     {
       "id": "assist",
