@@ -2,6 +2,8 @@
 
 本仓库是 **SCU URP++ 主插件**的「主题 / 插件商店」内容源。主插件从这里拉取 `catalog.json` 获取可下载列表。
 
+> **第三方开发规范见 [DEV_GUIDELINES.md](./DEV_GUIDELINES.md)**：投稿前必读（卡片样式 cardCss、暗色适配、按钮克制、CSS 覆盖与修 bug 纪律）。
+
 ## 目录结构
 
 ```
