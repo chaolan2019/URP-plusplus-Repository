@@ -64,9 +64,11 @@ URP++-Repository/
   "preview": ["#FFFFFF", "#000000"],  // 主题选填。预览色（3 个色值），商店可用
 
   // ===== theme 专属 =====
-  "dark": true,                 // 选填。主题是否支持暗色模式（决定是否必须做暗色适配）
+  "dark": true,                // 能力声明：是否支持暗色模式。支持→需做暗色变体，插件显示暗色开关；不支持→插件屏蔽暗色按钮，用户不可用
+  "dynamic": true,             // 能力声明：是否支持动态配色（种子色）。支持→插件显示种子色；不支持→屏蔽种子色内容
+  "palettes": true,            // 能力声明：是否支持固定调色板。支持才显示调色板项
   "cardCss": "…",               // 第三方主题【必填】。卡片展示样式（见 三.3）。官方 4 主题由主插件内置样式，不需要 cardCss
-  "downloads": 1234,            // 选填。下载量（有则显示；无则不显示，计数后端另配）
+  "downloads": 1234,           // 选填。下载量（有则显示；无则不显示，计数后端另配）
 
   // ===== plugin 专属 =====
   "allowJS": true,              // 插件必填。声明需要脚本能力
@@ -104,20 +106,17 @@ URP++-Repository/
 
 > **不要**在 cardCss 里写次要按钮（`.urppp-skin-card[data-skin=…] .urppp-set-btn.ghost`）。主插件的「仓库/删除」按钮已**复用 `urppp-skin-apply` 样式**（见[五]），你写了反而被主插件覆盖或造成冲突。
 
-### 3.4 暗色适配（必做）
-主题支持暗色（`cardCss` 或 catalog 有 `dark: true`）时，cardCss 必须提供 `html.urppp-theme-dark` 暗色变体，**并同步覆盖**：
-- 卡片底色 `background`
-- 卡片文字色 `color`（含 `.urppp-skin-name` / `.urppp-skin-desc`）
-- 主按钮 `.urppp-skin-apply`（background/color/border）
+### 3.4 能力适配原则（重要，不是「所有主题都做暗色」）
 
-```css
-html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] { background:#1e1e1e; color:#eee; }
-html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-name,
-html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-desc { color:#eee; }
-html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { background:#3b82f6; color:#fff; }
-```
+主题通过能力字段声明自己支持什么（`dark` / `dynamic` / `palettes`），插件据此**提供选项或屏蔽选项**：
 
-只适配亮色，暗色下会残留白底/亮色卡片和按钮。官方 4 主题的暗色卡由主插件 per-skin 兜底（你只关注第三方即可）。
+- **支持暗色（`dark: true`）**→ 主题提供暗色变体，插件**显示暗色模式开关**；`dark: false`（不适配）→ 插件**屏蔽暗色按钮**，用户不可用，主题无需做暗色。
+- **支持动态配色（`dynamic: true`）**→ 插件显示种子色（主题色）选项；`dynamic: false` → **屏蔽种子色内容**（不显示、不划线）。
+- **支持固定调色板（`palettes: true`）**→ 插件显示调色板项；不支持则屏蔽。
+
+**所以**：只有 `dark: true` 的主题才需要 `html.urppp-theme-dark` 暗色变体；`dark: false` 的不用做，插件会自动把暗色开关隐藏。同理 `dynamic: false` 的主题不用提供种子色样式，插件自动屏蔽。
+
+> 若主题声明了 `dark: true` 却不提供暗色变体，或声明 `dynamic: true` 却不配合，属于**能力与实现不符**，评审不通过。能力声明必须与实际产物一致。
 
 ### 3.5 悬停态
 hover 时必须**背景与文字同步**：卡片 hover 的背景变化要**明显**（不要只改文字），且 `.urppp-skin-name` / `.urppp-skin-desc` 等子元素**跟着变色**。避免「背景变了文字没跟」或「只改文字背景不变」导致看不清。
