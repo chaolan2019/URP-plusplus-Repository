@@ -4,7 +4,9 @@
 
 > **投稿 / 开发前请先读 [DEV_GUIDELINES.md](./DEV_GUIDELINES.md)**：完整的 catalog 字段、主题/插件投稿、卡片样式、暗色适配、CSS 开发规范与常见坑。
 >
-> **主题投稿示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md)**（以「自然有机」为例的完整投稿示范）。
+> **主题投稿示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md)**（以「自然有机」为例）。
+>
+> **插件投稿示例见 [PLUGIN_EXAMPLE.md](./PLUGIN_EXAMPLE.md)**（以「辅助插件」为例）。
 
 ## 目录结构
 

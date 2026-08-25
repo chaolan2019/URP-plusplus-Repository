@@ -7,7 +7,7 @@
 ## 目录
 
 1. [主题投稿示例（natural organic）](#一主题投稿示例natural-organic)
-2. [插件投稿示例（辅助插件）](#二插件投稿示例辅助插件)
+2. [插件投稿示例](#二插件投稿示例)
 3. [投稿者仓库组织](#三投稿者仓库组织)
 4. [自建源（去中心化）示例](#四自建源去中心化示例)
 5. [投稿 Checklist](#五投稿-checklist)
@@ -166,81 +166,9 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
 
 ---
 
-## 二、插件投稿示例（辅助插件）
+## 二、插件投稿示例
 
-### 2.1 catalog 条目
-
-```jsonc
-{
-  "id": "assist",
-  "type": "plugin",
-  "name": "辅助插件",
-  "description": "登录助手 / 评教 / 会话保持 / 2FA",
-  "version": "1.5.3",
-  "author": "Chao_Lan",
-  "repo": "https://github.com/chaolan2019/SCU-URP-plusplus",
-  "minAPP": "1.9.0",
-  "entry": [
-    "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js",
-    "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/plugins/urpppp.plugin.js",
-    "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js"
-  ],
-  "allowJS": true
-}
-```
-
-### 2.2 注册接口（IIFE 装载式）
-
-插件以自执行函数（IIFE）发布，检测主插件注入的装载接口 `window.__urpppPlugin` 并调用 `register`：
-
-```js
-(() => {
-  'use strict';
-  const VERSION = '1.5.3';                       // 与 catalog `version` 一致
-
-  // …功能实现（登录 / 评教 / 会话保持）…
-
-  const isPluginMode = typeof window.__urpppPlugin === 'object' && !!window.__urpppPlugin;
-  if (isPluginMode) {
-    try {
-      window.__urpppPlugin.register({
-        id: 'assist',                // 与 catalog `id` 一致
-        type: 'plugin',
-        name: '辅助插件',             // 与 catalog `name` 一致
-        version: VERSION,            // 与 catalog `version` 一致
-        subpanels: {                 // 挂到主插件设置面板的子面板
-          login:   { label: '登录助手', open: () => openLoginPanel() },
-          eval:    { label: '评教助手', open: () => openEvalPanel() },
-          session: { label: '会话保持', open: () => openSessionPanel() },
-        }
-      });
-    } catch (_) { /* 装载失败时静默降级 */ }
-  }
-})();
-```
-
-**要求**：`id` / `name` / `version` 必须与 catalog 条目一致；`type` 固定 `plugin`；`subpanels` 可选（`{ label, open }`）。
-
-### 2.3 降级与暴露
-
-脱离主插件时可降级为独立脚本（GM 菜单命令），并可把核心能力挂到全局便于扩展：
-
-```js
-try {
-  GM_registerMenuCommand('URP++辅助：立即识别登录验证码', () => { resumeAutoLogin(); });
-} catch (_) {}
-
-window.__urppppAssist = {
-  version: VERSION,
-  runLogin: mainLogin,
-  runEval: runEvaluationAssist,
-  startFullAuto: startFullAutoEvaluation,
-  stopFullAuto: stopFullAuto,
-  injectSettings: injectSettingsPanel,
-};
-```
-
-主插件通过 `pluginManager` 的 `api.install / unregister / list / get / isEnabled` 管理插件装载与卸载；插件在 `unregister` 时需清理 DOM / 监听 / 定时器。
+插件投稿的完整规范与示例（注册接口、降级、暴露 API、生命周期、catalog 条目）见 [PLUGIN_EXAMPLE.md](./PLUGIN_EXAMPLE.md)。
 
 ---
 
