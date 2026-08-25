@@ -147,11 +147,81 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { 
 
 ## 四、插件开发规范
 
-- catalog 中 `type: plugin`，并声明 `allowJS: true`。
-- 产物经主插件装载式注册（`pluginManager`，提供 `api.install / unregister / list / get / isEnabled`）。
-- 插件注册的 `name`、`description`、`author`、`version`、`repo` 必须与 catalog 条目一致，以保证商店管理页正确显示。
-- `entry` 提供多 URL 降级，`repo` 指向插件仓库。
-- 更新时同步提升插件自带版本与 catalog `version`。
+插件以 IIFE（自执行函数）形式发布，通过主插件注入的装载接口完成注册。完整参考见辅助插件（`plugins/urpppp.plugin.js`）。
+
+### 4.1 注册接口
+
+插件检测主插件注入的装载接口 `window.__urpppPlugin`：
+
+```js
+(() => {
+  'use strict';
+  const VERSION = '1.5.3';
+  // …实现…
+
+  const isPluginMode = typeof window.__urpppPlugin === 'object' && !!window.__urpppPlugin;
+  if (isPluginMode) {
+    try {
+      window.__urpppPlugin.register({
+        id: 'assist',           // 唯一标识，须与 catalog 的 id 一致
+        type: 'plugin',
+        name: '辅助插件',        // 展示名，须与 catalog 的 name 一致
+        version: VERSION,       // 须与 catalog 的 version 一致
+        subpanels: {            // 可选：插件子面板，挂到主插件设置面板
+          login:   { label: '登录助手', open: () => openLoginPanel() },
+          eval:    { label: '评教助手', open: () => openEvalPanel() },
+          session: { label: '会话保持', open: () => openSessionPanel() },
+        }
+      });
+    } catch (_) { /* ignore */ }
+  }
+})();
+```
+
+要点：
+- **`id` / `name` / `version` 必须与 catalog 条目一致**，否则商店管理页显示异常、检查更新不生效。
+- `subpanels`：每个子面板 `{ label, open }`，`open` 为打开对应设置面板的回调。
+- `type` 固定为 `plugin`。
+
+### 4.2 降级与独立运行
+
+插件可能脱离主插件运行（独立 userscript）。当 `window.__urpppPlugin` 不存在时，应降级为独立模式：
+
+```js
+try {
+  GM_registerMenuCommand('URP++辅助：打开设置说明', () => {
+    alert('请启用 URP++ 主脚本，点击顶栏齿轮，在设置底部配置相关助手。');
+  });
+  GM_registerMenuCommand('URP++辅助：立即识别验证码', () => { resumeAutoLogin(); });
+} catch (_) {}
+```
+
+### 4.3 向外部暴露 API（可选）
+
+为便于主插件 / 控制台 / 扩展调用，可将核心能力挂到全局：
+
+```js
+window.__urppppAssist = {
+  version: VERSION,
+  runLogin: mainLogin,
+  runEval: runEvaluationAssist,
+  startFullAuto: startFullAutoEvaluation,
+  stopFullAuto: stopFullAuto,
+  injectSettings: injectSettingsPanel,
+};
+```
+
+### 4.4 持久化与依赖
+
+- 插件使用 `GM_getValue / GM_setValue` 持久化，存储键建议加命名空间前缀（如 `urpppp_assist_v1_...`）避免冲突。
+- 可依赖主插件已注入的 `window.__urpppPlugin` 提供的环境；访问教务页 DOM / jQuery 时需判空并防多次绑定（`window.__xxxBound` 标记）。
+- 设置面板项通过主插件设置面板注入（辅助插件用 `injectSettingsPanel`）。
+
+### 4.5 catalog 与生命周期
+
+- catalog 中 `type: plugin`，`allowJS: true`，`entry` 提供多 URL 降级，`repo` 指向插件仓库。
+- 主机通过 `pluginManager`（`api.install / unregister / list / get / isEnabled`）管理插件装载与卸载，插件需在 `unregister` 时清理 DOM / 监听 / 定时器。
+- 更新时同步提升插件自带 `version` 与 catalog `version`。
 
 ---
 

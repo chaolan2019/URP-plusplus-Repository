@@ -189,11 +189,58 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
 }
 ```
 
-### 2.2 插件注册规范
+### 2.2 注册接口（IIFE 装载式）
 
-- 插件经主插件装载式注册（`pluginManager`，提供 `api.install / unregister / list / get / isEnabled`）。
-- 插件注册的 `name` / `description` / `author` / `version` / `repo` 必须与 catalog 条目一致，否则商店管理页显示异常。
-- 更新时同步提升插件自带版本与 catalog `version`。
+插件以自执行函数（IIFE）发布，检测主插件注入的装载接口 `window.__urpppPlugin` 并调用 `register`：
+
+```js
+(() => {
+  'use strict';
+  const VERSION = '1.5.3';                       // 与 catalog `version` 一致
+
+  // …功能实现（登录 / 评教 / 会话保持）…
+
+  const isPluginMode = typeof window.__urpppPlugin === 'object' && !!window.__urpppPlugin;
+  if (isPluginMode) {
+    try {
+      window.__urpppPlugin.register({
+        id: 'assist',                // 与 catalog `id` 一致
+        type: 'plugin',
+        name: '辅助插件',             // 与 catalog `name` 一致
+        version: VERSION,            // 与 catalog `version` 一致
+        subpanels: {                 // 挂到主插件设置面板的子面板
+          login:   { label: '登录助手', open: () => openLoginPanel() },
+          eval:    { label: '评教助手', open: () => openEvalPanel() },
+          session: { label: '会话保持', open: () => openSessionPanel() },
+        }
+      });
+    } catch (_) { /* 装载失败时静默降级 */ }
+  }
+})();
+```
+
+**要求**：`id` / `name` / `version` 必须与 catalog 条目一致；`type` 固定 `plugin`；`subpanels` 可选（`{ label, open }`）。
+
+### 2.3 降级与暴露
+
+脱离主插件时可降级为独立脚本（GM 菜单命令），并可把核心能力挂到全局便于扩展：
+
+```js
+try {
+  GM_registerMenuCommand('URP++辅助：立即识别登录验证码', () => { resumeAutoLogin(); });
+} catch (_) {}
+
+window.__urppppAssist = {
+  version: VERSION,
+  runLogin: mainLogin,
+  runEval: runEvaluationAssist,
+  startFullAuto: startFullAutoEvaluation,
+  stopFullAuto: stopFullAuto,
+  injectSettings: injectSettingsPanel,
+};
+```
+
+主插件通过 `pluginManager` 的 `api.install / unregister / list / get / isEnabled` 管理插件装载与卸载；插件在 `unregister` 时需清理 DOM / 监听 / 定时器。
 
 ---
 
