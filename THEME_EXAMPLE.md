@@ -46,11 +46,12 @@
   "preview": ["#FAF6F1", "#5C4033", "#8B9D77"],
   "dark": true,
   "dynamic": false,
-  "palettes": false
+  "palettes": false,
+  "cardCss": "…"   // 官方主题含完整 cardCss（亮/暗 + 主按钮，见 1.4）。主插件对官方主题用内置样式兑底、不注入；第三方必须注入
 }
 ```
 
-> 官方主题（flat / organic / brutal / neu）卡片样式由主插件内置，故官方 catalog 条目**不含** `cardCss`。第 1.4 节展示「若作为第三方投稿」应如何编写。
+> 官方主题（flat / organic / brutal / neu）的 catalog 条目**含** `cardCss`（作规范对齐与数据）；主插件检测到主题属于官方时用内置 `settings.css` 样式兑底、不注入 cardCss。第 1.4 节展示完整 cardCss 写法（第三方必填）。
 
 ### 1.3 主题产物（organic.css）
 
