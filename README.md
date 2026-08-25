@@ -7,10 +7,13 @@
 ```
 .
 ├── catalog.json       # 商店清单（核心，主插件从这里拉列表）
-├── urpppp.plugin.js   # 辅助插件（主插件装载式）
+├── plugins/
+│   └── urpppp.plugin.js   # 辅助插件（主插件装载式）
 ├── themes/
 │   ├── flat.css       # 极简扁平主题
-│   └── organic.css    # 自然有机主题
+│   ├── organic.css    # 自然有机主题
+│   ├── brutal.css     # 新野兽派主题
+│   └── neu.css        # 新拟物主题
 └── README.md          # 本说明 + 投稿规范
 ```
 

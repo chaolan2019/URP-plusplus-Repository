@@ -1,5 +1,5 @@
 {
-  "name": "SCU URP++ 主题与插件仓库",
+  "name": "SCU URP++ 主题与插件仓�?,
   "version": 1,
   "updated": "2026-08-24",
   "items": [
@@ -7,7 +7,7 @@
       "id": "flat",
       "type": "theme",
       "name": "极简扁平",
-      "description": "无阴影、硬边与纯色层次，冷硬清晰。",
+      "description": "无阴影、硬边与纯色层次，冷硬清晰�?,
       "version": "1.0.0",
       "author": "Chao_Lan",
       "minAPP": "1.9.4",
@@ -22,7 +22,7 @@
       "id": "organic",
       "type": "theme",
       "name": "自然有机",
-      "description": "奶油底与大地色，温暖圆角。不支持动态配色。",
+      "description": "奶油底与大地色，温暖圆角。不支持动态配色�?,
       "version": "1.0.0",
       "author": "Chao_Lan",
       "minAPP": "1.9.4",
@@ -37,7 +37,7 @@
       "id": "brutal",
       "type": "theme",
       "name": "新野兽派",
-      "description": "高对比画布、粗边框与硬阴影。支持暗色，不支持动态配色。",
+      "description": "高对比画布、粗边框与硬阴影。支持暗色，不支持动态配色�?,
       "version": "1.0.0",
       "author": "Chao_Lan",
       "minAPP": "1.9.4",
@@ -51,8 +51,8 @@
     {
       "id": "neu",
       "type": "theme",
-      "name": "新拟物",
-      "description": "同色双阴影凸起/内凹，立体柔和。支持暗色，不支持动态配色。",
+      "name": "新拟�?,
+      "description": "同色双阴影凸�?内凹，立体柔和。支持暗色，不支持动态配色�?,
       "version": "1.0.0",
       "author": "Chao_Lan",
       "minAPP": "1.9.4",
@@ -72,9 +72,9 @@
       "author": "Chao_Lan",
       "minAPP": "1.9.0",
       "entry": [
-        "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/urpppp.plugin.js",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/urpppp.plugin.js",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/urpppp.plugin.js"
+        "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/plugins/urpppp.plugin.js",
+        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js"
       ]
     }
   ]
