@@ -67,7 +67,7 @@ URP++-Repository/
   "dark": true,                 // 能力声明：是否支持暗色模式
   "dynamic": true,              // 能力声明：是否支持动态配色（种子色）
   "palettes": true,             // 能力声明：是否支持固定调色板
-  "cardCss": "…",               // 第三方主题必填；官方主题由主插件内置样式
+  "cardCss": "…",               // 第三方主题必填；官方主题含完整cardCss(亮/暗+主按钮)但主插件用内置样式兜底、不注入
   "downloads": 1234,            // 下载量（可选，无则不显示）
 
   // plugin 专属
@@ -107,7 +107,7 @@ URP++-Repository/
 
 cardCss 不应定义次要按钮（`urppp-set-btn.ghost`）。次要按钮由主插件统一以 `urppp-skin-apply` 样式渲染（见第五节），在 cardCss 中定义会导致覆盖冲突。
 
-官方 4 主题的卡片样式（亮色 / 暗色与主按钮）由主插件 `settings.css` 的 per-skin 规则内置，不写入 catalog 的 cardCss。为官方主题添加 cardCss 会覆盖主插件的暗色变体，导致暗色下卡片异常。
+**官方主题**（flat / organic / brutal / neu）的卡片样式已由主插件 `settings.css` 的 per-skin 规则内置（亮色 / 暗色 / 主按钮完整）。其 catalog `cardCss`（含 `html.urppp-theme-dark` 暗色变体）作为**规范对齐与数据**存在，但主插件在检测到主题属于官方（在 `SKIN_CATALOG` 内）时**不注入**其 `cardCss`，而是使用内置样式，以避免注入的 cardCss 覆盖内置暗色变体。**第三方主题**不在 `SKIN_CATALOG`，主插件会注入 catalog 的 `cardCss`，因此**第三方必须提供完整 `cardCss`**（含暗色变体）。
 
 ### 3.4 能力适配原则
 
