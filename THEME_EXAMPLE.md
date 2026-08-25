@@ -47,11 +47,11 @@
   "dark": true,
   "dynamic": false,
   "palettes": false,
-  "cardCss": "…"   // 官方独立主题含完整 cardCss（亮/暗 + hover + 主按钮，见 1.4）。主插件对官方主题用内置样式兑底、不注入；第三方必填且须完整
+  "cardCss": "…"   // 官方独立主题含完整 cardCss（亮/暗 + hover + 主按钮/仓库/删除，见 1.4）。主插件不再内置独立主题卡片样式，统一由 catalog cardCss 驱动
 }
 ```
 
-> 官方独立主题（flat / organic / brutal / neu）的 catalog 条目**含** `cardCss`（作完整规范示例）；主插件对官方主题用内置 `settings.css` 样式兑底、**不注入** cardCss（避免覆盖内置 hover 动效/状态）。第 1.4 节展示完整 cardCss 写法（第三方必填且须完整，含 hover 动效/暗色变体）。
+> 官方独立主题（flat / organic / brutal / neu）的 catalog 条目**含** `cardCss`，且已**从主插件脱离**——主插件不再内置这四套卡片样式，统一由 catalog `cardCss` 驱动（主插件仅保留 apple / editorial 内置）。第 1.4 节展示完整 cardCss 写法（所有主题必填，须覆盖主按钮/仓库/删除 + hover + 暗色变体）。
 
 ### 1.3 主题产物（organic.css）
 
@@ -127,9 +127,9 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 }
 ```
 
-### 1.4 卡片样式（cardCss，第三方必填）
+### 1.4 卡片样式（cardCss，必填且须完整）
 
-作用域 `.urppp-skin-card[data-skin="<id>"]`。仅定义卡片底色、文字色与主按钮 `.urppp-skin-apply`（不定义次要按钮）。以下值与该主题在 catalog 中的实际 `cardCss` 一致：
+作用域 `.urppp-skin-card[data-skin="<id>"]`。cardCss 须覆盖：卡片底色/文字色、主按钮 `.urppp-skin-apply`、**次要按钮 `.urppp-store-repo` / `.urppp-store-del`（仓库/删除，须跟主按钮同主题色）**、hover 动效、`is-current`，以及 `html.urppp-theme-dark` 暗色变体。以下值与 catalog 中的实际 `cardCss` 一致：
 
 ```css
 /* 亮色 */
@@ -140,26 +140,31 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 }
 .urppp-skin-card[data-skin="organic"] .urppp-skin-name,
 .urppp-skin-card[data-skin="organic"] .urppp-skin-desc{ color:inherit; }
-.urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
-  background:#FFFCF7; color:#5C4033;
-  border:1px solid #8B9D77; border-radius:999px; box-shadow:none;
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply,
+.urppp-skin-card[data-skin="organic"] .urppp-store-repo,
+.urppp-skin-card[data-skin="organic"] .urppp-store-del{
+  background:#5C4033; color:#fff;
+  border:none; border-radius:999px; box-shadow:none; transition:background 150ms,transform 150ms;
 }
-.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{
-  background:#5C4033; color:#fff; border-color:#5C4033;
-}
-.urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover{
-  background:#F3EDE4;
-}
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover,
+.urppp-skin-card[data-skin="organic"] .urppp-store-repo:hover,
+.urppp-skin-card[data-skin="organic"] .urppp-store-del:hover{ background:#4A3329; transform:translateY(-1px); }
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{ background:#4A3329; }
 
-/* 暗色变体（dark: true 时必提供） */
+/* 暗色变体（dark: true 时必提供，且同样覆盖次要按钮） */
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"]{
   background:#2A221B; color:#F5EDE4; border-color:#4A3B30;
 }
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-name,
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-desc{ color:inherit; }
-html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply,
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-repo,
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-store-del{
   background:#6F7D5A; color:#1C1712; border-color:#8B9D77;
 }
+```
+
+> **重要**：cardCss 若漏写 `.urppp-store-repo` / `.urppp-store-del` 或 hover 动效，脱离主插件内置后「仓库/删除」按钮会显示默认颜色、且无悬停动画（cardCss 驱动下没有内置兜底）。务必完整书写，可对照 catalog 官方主题的 `cardCss`。
 ```
 
 要点：卡片需预留 `padding-bottom:52px` 给底部按钮；`is-current` / `hover` 状态可选择性补充；支持暗色时暗色变体同步覆盖卡片底、文字与主按钮。
@@ -227,7 +232,7 @@ your-repo/
 - [ ] `entry` 至少 2 个 URL 保证降级可用。
 - [ ] 第三方主题在 `cardCss` 提供卡片底色与主按钮样式（不含次要按钮）。
 - [ ] 能力声明（`dark` / `dynamic` / `palettes`）与实际实现一致。
-- [ ] 第三方主题在 `cardCss` 提供完整卡片样式（含 hover 动效 / is-current / 暗色变体）；官方主题由主插件内置兑底。
+- [ ] 独立主题（官方 flat/organic/brutal/neu + 第三方）均在 `cardCss` 提供完整卡片样式（含主按钮/仓库/删除色、hover 动效、is-current、暗色变体）。
 
 **插件（plugin）**
 - [ ] catalog 含 `type: plugin` 与 `allowJS: true`。

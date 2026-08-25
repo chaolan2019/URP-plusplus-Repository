@@ -67,7 +67,7 @@ URP++-Repository/
   "dark": true,                 // 能力声明：是否支持暗色模式
   "dynamic": true,              // 能力声明：是否支持动态配色（种子色）
   "palettes": true,             // 能力声明：是否支持固定调色板
-  "cardCss": "…",               // 第三方主题必填；官方4独立主题由主插件内置样式兑底（catalog cardCss 作完整规范示例，主插件不注入）
+  "cardCss": "…",               // 主题（官方独立 + 第三方）必填；主插件不再内置独立主题卡片样式，一律由 catalog cardCss 提供（须含 hover 动效/暗色变体/次要按钮色）
   "downloads": 1234,            // 下载量（可选，无则不显示）
 
   // plugin 专属
@@ -124,8 +124,9 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { 
 
 **官方与第三方**：
 
-- **官方独立主题**（flat / organic / brutal / neu）的卡片样式由主插件 `settings.css` per-skin **内置**（亮色 / 暗色 / 主按钮 / hover 动效完整）。其 catalog `cardCss` 作为**完整规范示例**存在（含 hover / 暗色变体），主插件检测到主题属于官方（在 `SKIN_CATALOG` 内）时**不注入**，以免覆盖内置样式。
-- **第三方主题**不在 `SKIN_CATALOG`，主插件会注入 catalog 的 `cardCss`，因此第三方**必须按完整规范书写**（含 hover 动效、暗色变体、is-current、名字/描述颜色），否则商店卡片效果会**明显退化**（丢失 hover 动效 / 状态色）。
+- **官方独立主题**（flat / organic / brutal / neu）的卡片样式**已从主插件 `settings.css` 脱离**，统一由 catalog 的 `cardCss` 提供。`cardCss` 必须**完整**：覆盖卡片底色/文字色、主按钮 `.urppp-skin-apply`、**次要按钮 `.urppp-store-repo` / `.urppp-store-del`（仓库/删除，须跟主按钮同主题色）**、hover 动效、`is-current`，以及 `html.urppp-theme-dark` 暗色变体。主插件打开设置/商店时按需注入 catalog cardCss（官方与第三方一致）。
+
+> **注意**：脱离后若 `cardCss` 未写全（缺次要按钮色 / hover 动效 / 暗色变体），商店卡片会明显退化（按钮默认色、无悬停动效、暗色残留）。**完整书写是硬性要求**，可对照官方 catalog 的 `cardCss` 或 THEME_EXAMPLE。
 
 > 书写参考：可直接对照官方主题的完整 `cardCss`（catalog 中 flat / organic / brutal / neu 条目），示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md#14-卡片样式cardcss第三方必填)。
 
@@ -255,9 +256,9 @@ window.__urppppAssist = {
 
 ### 5.4 卡片样式归属
 
-- 官方独立主题（flat / organic / brutal / neu）：卡片样式由主插件 `settings.css` per-skin **内置**（完整含 hover），catalog `cardCss` 作规范示例（主插件不注入）。
+- 官方独立主题（flat / organic / brutal / neu）：卡片样式由 catalog `cardCss` 提供，主插件不再内置。
 - 内置主题（apple / editorial）：卡片样式由主插件 `settings.css` per-skin 内置（不在 catalog）。
-- 第三方主题：卡片样式由 catalog `cardCss` 提供，必须完整书写。
+- 第三方主题：卡片样式由 catalog `cardCss` 提供，必须完整书写（含次要按钮色 / hover / 暗色变体）。
 
 ---
 
@@ -273,7 +274,7 @@ window.__urppppAssist = {
 |---|---|---|
 | 主题 CSS 以 `button:not(...)` 宽泛覆盖 | 应用主题后商店按钮被刷成该主题样式 | 按钮复用 `urppp-skin-apply`（被 `:not(.urppp-skin-apply)` 排除） |
 | 暗色按钮规则缺失 `background` | 按钮背景继承全局 `--input-bg`（当前主题）而异常 | 暗色按钮补 `background: transparent` 或复用 apply 样式 |
-| catalog `cardCss` 注入晚于主插件样式 | 覆盖主插件暗色变体，暗色卡片异常 | 官方主题由主插件内置样式兑底、不注入 catalog cardCss；第三方需完整 cardCss（含暗色变体） |
+| catalog `cardCss` 缺失次要按钮色/hover | 脱离后仓库/删除按钮显示默认色、悬停无动效 | `cardCss` 须覆盖 `.urppp-store-repo`/`.urppp-store-del` 主题色 + hover 动效 + 暗色变体 |
 | catalog 请求无超时 | 网络异常时商店停留在加载态 | 使用 `Promise.allSettled` + 5 秒超时 |
 | 应用 / 删除主题后不刷新 | 「使用中」等状态不更新，删除正用主题残留缓存 | 应用 / 删除后立即刷新列表；删除正用主题回退默认主题 |
 
