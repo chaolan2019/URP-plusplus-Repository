@@ -128,32 +128,40 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 
 ### 1.4 卡片样式（cardCss，第三方必填）
 
-作用域 `.urppp-skin-card[data-skin="<id>"]`，**仅定义卡片底色与主按钮 `.urppp-skin-apply`**（不定义次要按钮）：
+作用域 `.urppp-skin-card[data-skin="<id>"]`。仅定义卡片底色、文字色与主按钮 `.urppp-skin-apply`（不定义次要按钮）。以下值与该主题在 catalog 中的实际 `cardCss` 一致：
 
 ```css
+/* 亮色 */
 .urppp-skin-card[data-skin="organic"]{
   background:#FAF6F1; color:#5C4033;
-  border-radius:16px; border:1px solid #E8DFD2;
-  padding-bottom:52px;
+  border:1px solid #E8DFD2; border-radius:22px;
+  box-shadow:none; padding-bottom:52px;
 }
+.urppp-skin-card[data-skin="organic"] .urppp-skin-name,
+.urppp-skin-card[data-skin="organic"] .urppp-skin-desc{ color:inherit; }
 .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
-  background:#5C4033; color:#fff;
-  border-radius:999px; border:none;
+  background:#FFFCF7; color:#5C4033;
+  border:1px solid #8B9D77; border-radius:999px; box-shadow:none;
 }
 .urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{
-  background:#4A3329;
+  background:#5C4033; color:#fff; border-color:#5C4033;
 }
 .urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover{
-  background:#6B5346;
+  background:#F3EDE4;
 }
 
+/* 暗色变体（dark: true 时必提供） */
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"]{
   background:#2A221B; color:#F5EDE4; border-color:#4A3B30;
 }
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-name,
+html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-desc{ color:inherit; }
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
-  background:#C4A484; color:#1C1712;
+  background:#6F7D5A; color:#1C1712; border-color:#8B9D77;
 }
 ```
+
+要点：卡片需预留 `padding-bottom:52px` 给底部按钮；`is-current` / `hover` 状态可选择性补充；支持暗色时暗色变体同步覆盖卡片底、文字与主按钮。
 
 ---
 

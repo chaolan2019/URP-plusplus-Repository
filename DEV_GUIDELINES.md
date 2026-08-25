@@ -97,17 +97,37 @@ URP++-Repository/
 
 ### 3.3 卡片样式（cardCss）
 
-第三方主题必须在 catalog 的 `cardCss` 中提供卡片展示样式。作用域为 `.urppp-skin-card[data-skin="<id>"]`。仅定义卡片底色与主按钮 `.urppp-skin-apply`：
+第三方主题必须在 catalog 的 `cardCss` 中提供卡片展示样式。作用域为 `.urppp-skin-card[data-skin="<id>"]`。
+
+**cardCss 应覆盖的内容**：
+
+1. 卡片底色（`background`）与文字色（`color`），以及 `border-radius` / `border` / `box-shadow`；需预留底部空间 `padding-bottom:52px` 给按钮。
+2. 卡片标题与描述颜色（`.urppp-skin-name` / `.urppp-skin-desc`，如无则继承 `color`）。
+3. 主按钮 `.urppp-skin-apply`（`background` / `color` / `border` / `border-radius`）及其 `is-current` / `hover` 状态。
+4. 支持暗色（`dark: true`）时，提供 `html.urppp-theme-dark` 变体，并**同步覆盖**卡片底色、文字色与主按钮。
 
 ```css
-.urppp-skin-card[data-skin="mytheme"] { background:#fff; color:#222; border-radius:14px; padding-bottom:52px; }
+.urppp-skin-card[data-skin="mytheme"] { background:#fff; color:#222; border-radius:14px; border:1px solid #eee; padding-bottom:52px; }
+.urppp-skin-card[data-skin="mytheme"] .urppp-skin-name,
+.urppp-skin-card[data-skin="mytheme"] .urppp-skin-desc { color:#555; }
 .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { background:#2563eb; color:#fff; border-radius:999px; }
 .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply.is-current { background:#1d4ed8; }
+.urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply:hover { background:#3b82f6; }
+
+html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] { background:#1e1e1e; color:#eee; border-color:#333; }
+html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-name,
+html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-desc { color:#ccc; }
+html.urppp-theme-dark .urppp-skin-card[data-skin="mytheme"] .urppp-skin-apply { background:#3b82f6; color:#fff; }
 ```
 
-cardCss 不应定义次要按钮（`urppp-set-btn.ghost`）。次要按钮由主插件统一以 `urppp-skin-apply` 样式渲染（见第五节），在 cardCss 中定义会导致覆盖冲突。
+**限定**：cardCss 不应定义次要按钮（`urppp-set-btn.ghost`）。「仓库 / 删除」按钮由主插件统一以 `urppp-skin-apply` 样式渲染（见第五节），在 cardCss 中定义会导致覆盖冲突。
 
-**官方主题**（flat / organic / brutal / neu）的卡片样式已由主插件 `settings.css` 的 per-skin 规则内置（亮色 / 暗色 / 主按钮完整）。其 catalog `cardCss`（含 `html.urppp-theme-dark` 暗色变体）作为**规范对齐与数据**存在，但主插件在检测到主题属于官方（在 `SKIN_CATALOG` 内）时**不注入**其 `cardCss`，而是使用内置样式，以避免注入的 cardCss 覆盖内置暗色变体。**第三方主题**不在 `SKIN_CATALOG`，主插件会注入 catalog 的 `cardCss`，因此**第三方必须提供完整 `cardCss`**（含暗色变体）。
+**官方与第三方**：
+
+- **官方主题**（flat / organic / brutal / neu）的卡片样式已由主插件 `settings.css` 的 per-skin 规则内置（亮色 / 暗色 / 主按钮完整）。其 catalog 内的 `cardCss`（含 `html.urppp-theme-dark` 暗色变体）作为**规范对齐与数据**存在；主插件检测到主题属于官方（在 `SKIN_CATALOG` 内）时**不注入**该 `cardCss`，而是使用内置样式，避免注入的 cardCss 覆盖内置暗色变体。
+- **第三方主题**不在 `SKIN_CATALOG`，主插件会注入 catalog 的 `cardCss`，因此**第三方必须提供完整 `cardCss`**（含暗色变体）。
+
+> 书写参考：可直接对照官方主题的完整 `cardCss`（catalog 中 flat / organic / brutal / neu 条目），示例见 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md#14-卡片样式cardcss第三方必填)。
 
 ### 3.4 能力适配原则
 
