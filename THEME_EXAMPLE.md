@@ -1,22 +1,32 @@
-# 主题投稿示例：以「自然有机（organic）」为例
+# 投稿示例：以「自然有机」与「辅助插件」为例
 
-本示例基于官方主题「自然有机」，演示一个第三方主题投稿应具备的完整要素（产物、catalog 条目、卡片样式、能力声明）。字段与规范详见 [DEV_GUIDELINES.md](./DEV_GUIDELINES.md)。
+本示例演示主题与插件两种投稿的完整要素（产物、catalog 条目、卡片样式、能力声明、仓库组织、自建源）。字段规范详见 [DEV_GUIDELINES.md](./DEV_GUIDELINES.md)。
 
 ---
 
-## 1. 主题能力声明
+## 目录
+
+1. [主题投稿示例（natural organic）](#一主题投稿示例natural-organic)
+2. [插件投稿示例（辅助插件）](#二插件投稿示例辅助插件)
+3. [投稿者仓库组织](#三投稿者仓库组织)
+4. [自建源（去中心化）示例](#四自建源去中心化示例)
+5. [投稿 Checklist](#五投稿-checklist)
+
+---
+
+## 一、主题投稿示例（natural organic）
+
+### 1.1 主题能力声明
 
 | 能力 | 值 | 说明 |
 |---|---|---|
-| `dark` | `true` | 支持暗色模式，需提供暗色变体，主插件启用暗色开关 |
-| `dynamic` | `false` | 不支持动态配色（种子色），主插件屏蔽种子色选项 |
-| `palettes` | `false` | 不支持固定调色板，主插件屏蔽调色板项 |
+| `dark` | `true` | 支持暗色模式；须提供暗色变体，主插件启用暗色开关 |
+| `dynamic` | `false` | 不支持动态配色（种子色）；主插件屏蔽种子色选项，主题无需提供 |
+| `palettes` | `false` | 不支持固定调色板；主插件屏蔽调色板项 |
 
-能力声明必须与主题实际实现一致：`dynamic: false` 即主插件不会显示种子色内容，主题无需提供动态配色样式。
+能力声明必须与主题实际实现一致。`dynamic: false` 的主插件不会显示种子色内容。
 
----
-
-## 2. catalog 条目
+### 1.2 catalog 条目
 
 ```jsonc
 {
@@ -40,56 +50,55 @@
 }
 ```
 
-> 官方主题（flat / organic / brutal / neu）的卡片样式由主插件 `settings.css` 内置，因此官方主题的 catalog 条目**不包含** `cardCss`。以下 3、4 节展示的是「若作为第三方投稿」应如何编写产物与卡片样式。
+> 官方主题（flat / organic / brutal / neu）卡片样式由主插件内置，故官方 catalog 条目**不含** `cardCss`。第 1.4 节展示「若作为第三方投稿」应如何编写。
 
----
+### 1.3 主题产物（organic.css）
 
-## 3. 主题产物（organic.css）
+产物仅注入 CSS。所有规则以 `html[data-urppp-skin="organic"]` 前缀限定作用域。
 
-### 3.1 变量声明（亮色）
-
-所有规则必须以 `html[data-urppp-skin="organic"]` 为前缀，限定作用域：
+（1）**变量 token（亮色）**
 
 ```css
 html[data-urppp-skin="organic"]{
-  --radius:22px!important;
-  --bg:#FAF6F1!important;
-  --surface:#FFFCF7!important;
-  --input-bg:#F3EDE4!important;
-  --text:#3F2E24!important;
-  --text-secondary:#6B5346!important;
-  --border:#E7E0D6!important;
-  --primary:#5C4033!important;
-  --primary-hover:#4A3329!important;
-  --ring:rgba(92,64,51,.16)!important;
+  --radius:22px!important; --radius-sm:14px!important;
+  --shadow:0 2px 10px rgba(92,64,51,.06)!important;
+  --bg:#FAF6F1!important; --surface:#FFFCF7!important; --input-bg:#F3EDE4!important;
+  --text:#3F2E24!important; --text-secondary:#6B5346!important; --text-muted:#8A7364!important;
+  --border:#E7E0D6!important; --border-focus:#8B9D77!important;
+  --primary:#5C4033!important; --primary-hover:#4A3329!important; --ring:rgba(92,64,51,.16)!important;
 }
 ```
 
-### 3.2 暗色变体（支持暗色时必须提供）
-
-`dark: true` 时须提供 `html[data-urppp-skin="<id>"].urppp-theme-dark` 变体，覆盖色板变量：
+（2）**暗色变体**（`dark: true` 必提供）
 
 ```css
 html[data-urppp-skin="organic"].urppp-theme-dark,
 html.urppp-theme-dark[data-urppp-skin="organic"]{
-  --bg:#1C1712!important;
-  --surface:#2A221B!important;
-  --text:#F5EDE4!important;
-  --text-secondary:#D2C0B0!important;
-  --border:#4A3B30!important;
-  --primary:#C4A484!important;
-  --primary-hover:#D4B896!important;
-  --ring:rgba(196,164,132,.22)!important;
+  --bg:#1C1712!important; --surface:#2A221B!important; --input-bg:#342A22!important;
+  --text:#F5EDE4!important; --text-secondary:#D2C0B0!important; --text-muted:#A89080!important;
+  --border:#4A3B30!important; --border-focus:#A3B58A!important;
+  --primary:#C4A484!important; --primary-hover:#D4B896!important; --ring:rgba(196,164,132,.22)!important;
+  --shadow:0 8px 24px rgba(0,0,0,.4)!important;
 }
 ```
 
-### 3.3 组件规则
+（3）**背景纹理**（可选）
 
-对页面元素应用主题化样式，统一使用前缀限定：
+```css
+html[data-urppp-skin="organic"] body,
+html[data-urppp-skin="organic"] #urppp-clean-root{
+  background-color:var(--bg)!important;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E")!important;
+  background-attachment:fixed!important;
+}
+```
+
+（4）**组件规则**（卡片 / 按钮 / 输入 / 导航点 / 标签页 / 评分 / 字体）
 
 ```css
 html[data-urppp-skin="organic"] #urppp-clean-root .uc-card,
-html[data-urppp-skin="organic"] #urppp-clean-root .uc-modal{
+html[data-urppp-skin="organic"] #urppp-clean-root .uc-modal,
+html[data-urppp-skin="organic"] #urppp-clean-root .uc-score-pane{
   border-radius:var(--radius)!important;
   border:1px solid var(--border)!important;
   box-shadow:var(--shadow)!important;
@@ -100,13 +109,26 @@ html[data-urppp-skin="organic"] .btn-primary:not(.btn-app){
   border-color:var(--primary)!important;
   color:#fff!important;
 }
+html[data-urppp-skin="organic"] input.form-control,
+html[data-urppp-skin="organic"] #urppp-root .ui{
+  border-radius:999px!important;
+  border:1px solid var(--border)!important;
+  background:var(--input-bg)!important;
+  color:var(--text)!important;
+}
+html[data-urppp-skin="organic"] .urppp-nav-dot,
+html[data-urppp-skin="organic"] #urppp-clean-root .uc-top-theme .urppp-nav-dot{
+  border-radius:50%!important;
+}
+html[data-urppp-skin="organic"] h1,
+html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
+  font-family:Georgia,"Noto Serif SC","Songti SC","Times New Roman",serif!important;
+}
 ```
 
----
+### 1.4 卡片样式（cardCss，第三方必填）
 
-## 4. 卡片样式（cardCss，第三方必填）
-
-第三方主题必须在 catalog 的 `cardCss` 字段提供商店卡片展示样式。作用域为 `.urppp-skin-card[data-skin="<id>"]`，**仅定义卡片底色与主按钮（`.urppp-skin-apply`）**：
+作用域 `.urppp-skin-card[data-skin="<id>"]`，**仅定义卡片底色与主按钮 `.urppp-skin-apply`**（不定义次要按钮）：
 
 ```css
 .urppp-skin-card[data-skin="organic"]{
@@ -118,7 +140,12 @@ html[data-urppp-skin="organic"] .btn-primary:not(.btn-app){
   background:#5C4033; color:#fff;
   border-radius:999px; border:none;
 }
-.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{ background:#4A3329; }
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply.is-current{
+  background:#4A3329;
+}
+.urppp-skin-card[data-skin="organic"] .urppp-skin-apply:hover{
+  background:#6B5346;
+}
 
 html.urppp-theme-dark .urppp-skin-card[data-skin="organic"]{
   background:#2A221B; color:#F5EDE4; border-color:#4A3B30;
@@ -128,19 +155,102 @@ html.urppp-theme-dark .urppp-skin-card[data-skin="organic"] .urppp-skin-apply{
 }
 ```
 
-要点：
-- 不在此定义次要按钮（`.urppp-set-btn.ghost`）。「仓库 / 删除」按钮由主插件以 `urppp-skin-apply` 样式统一渲染。
-- 支持暗色时，须提供 `html.urppp-theme-dark` 变体并覆盖卡片底色、文字色与主按钮。
+---
+
+## 二、插件投稿示例（辅助插件）
+
+### 2.1 catalog 条目
+
+```jsonc
+{
+  "id": "assist",
+  "type": "plugin",
+  "name": "辅助插件",
+  "description": "登录助手 / 评教 / 会话保持 / 2FA",
+  "version": "1.5.3",
+  "author": "Chao_Lan",
+  "repo": "https://github.com/chaolan2019/SCU-URP-plusplus",
+  "minAPP": "1.9.0",
+  "entry": [
+    "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js",
+    "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/plugins/urpppp.plugin.js",
+    "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js"
+  ],
+  "allowJS": true
+}
+```
+
+### 2.2 插件注册规范
+
+- 插件经主插件装载式注册（`pluginManager`，提供 `api.install / unregister / list / get / isEnabled`）。
+- 插件注册的 `name` / `description` / `author` / `version` / `repo` 必须与 catalog 条目一致，否则商店管理页显示异常。
+- 更新时同步提升插件自带版本与 catalog `version`。
 
 ---
 
-## 5. 投稿 Checklist
+## 三、投稿者仓库组织
 
+以官方仓库为例（主题产物 + 插件产物 + catalog + 说明文档）：
+
+```
+your-repo/
+├── catalog.json           # 商店清单（theme + plugin 条目）
+├── themes/
+│   ├── organic.css        # 主题产物
+│   └── …
+├── plugins/
+│   └── urpppp.plugin.js   # 插件产物
+├── README.md              # 仓库说明
+└── DEV_GUIDELINES.md      # （可选）引用的规范
+```
+
+`catalog.json` 的 `entry` 与 `repo` 指向本仓库。若走集中式（PR 到官方仓库），产物放入官方仓库对应目录，并在官方 `catalog.json` 添加条目。
+
+---
+
+## 四、自建源（去中心化）示例
+
+自建源使用独立的 `catalog.json`，条目 schema 与官方一致，`entry` / `repo` 指向自身仓库，并携带 `signature`：
+
+```jsonc
+{
+  "id": "mytheme",
+  "type": "theme",
+  "name": "我的主题",
+  "description": "……",
+  "version": "1.0.0",
+  "author": "me",
+  "repo": "https://github.com/me/my-repo",
+  "entry": [
+    "https://raw.githubusercontent.com/me/my-repo/main/themes/mytheme.css"
+  ],
+  "dark": true,
+  "cardCss": "…",
+  "signature": "sha256:…"
+}
+```
+
+投稿者在主插件「插件商店」→「仓库源」添加该源 URL 后，主插件合并拉取。官方源优先，同 `id` 冲突时官方源优先。安装第三方内容前，主插件会提示风险。
+
+---
+
+## 五、投稿 Checklist
+
+**主题（theme）**
 - [ ] 产物所有规则以 `html[data-urppp-skin="<id>"]` 为前缀。
-- [ ] 支持暗色（`dark: true`）时提供 `urppp-theme-dark` 暗色变体。
+- [ ] 支持暗色（`dark: true`）时提供 `urppp-theme-dark` 暗色变体，覆盖色板变量与组件。
 - [ ] catalog 条目包含 `type` / `name` / `description` / `version` / `author` / `repo` / `entry`。
-- [ ] `entry` 至少 2 个 URL 以保证降级可用。
+- [ ] `entry` 至少 2 个 URL 保证降级可用。
 - [ ] 第三方主题在 `cardCss` 提供卡片底色与主按钮样式（不含次要按钮）。
 - [ ] 能力声明（`dark` / `dynamic` / `palettes`）与实际实现一致。
-- [ ] 版本号为语义化版本，且与产物自带版本一致。
 - [ ] 官方主题不写 `cardCss`（由主插件内置样式接管）。
+
+**插件（plugin）**
+- [ ] catalog 含 `type: plugin` 与 `allowJS: true`。
+- [ ] 插件注册字段（名称 / 描述 / 作者 / 版本 / 仓库）与 catalog 一致。
+- [ ] `entry` 多 URL 降级，`repo` 指向插件仓库。
+
+**自建源（去中心化）**
+- [ ] 产物 + 自有 `catalog.json` 存放于自建仓库。
+- [ ] 条目携带 `signature`（签名校验）。
+- [ ] `entry` / `repo` 指向自建仓库。
