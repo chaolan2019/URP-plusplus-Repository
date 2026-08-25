@@ -22,7 +22,7 @@
         "#000000",
         "#4A4A4A"
       ],
-      "cardCss": ".urppp-skin-card[data-skin=\"flat\"]{background:#fff;color:#000;border-radius:0;border:none;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply{background:#000;color:#fff;border-radius:0;border:2px solid #000;box-shadow:none}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply.is-current{background:#333}.urppp-skin-card[data-skin=\"flat\"] .urppp-set-btn.ghost{background:#000;color:#fff;border:2px solid #000;border-radius:0;box-shadow:none}"
+      "cardCss": ".urppp-skin-card[data-skin=\"flat\"]{background:#fff;color:#000;border-radius:0;border:none;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply{background:#000;color:#fff;border-radius:0;border:2px solid #000;box-shadow:none}.urppp-skin-card[data-skin=\"flat\"] .urppp-skin-apply.is-current{background:#333}"
     },
     {
       "id": "organic",
@@ -43,7 +43,7 @@
         "#5C4033",
         "#8B9D77"
       ],
-      "cardCss": ".urppp-skin-card[data-skin=\"organic\"]{background:#FAF6F1;color:#5C4033;border-radius:16px;border:1px solid #E8DFD2;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply{background:#8B9D77;color:#fff;border-radius:999px;border:none;box-shadow:none}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply.is-current{background:#5C4033}.urppp-skin-card[data-skin=\"organic\"] .urppp-set-btn.ghost{background:#fff;color:#5C4033;border:1px solid #DCCFB8;border-radius:999px;box-shadow:none}"
+      "cardCss": ".urppp-skin-card[data-skin=\"organic\"]{background:#FAF6F1;color:#5C4033;border-radius:16px;border:1px solid #E8DFD2;box-shadow:none!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply{background:#8B9D77;color:#fff;border-radius:999px;border:none;box-shadow:none}.urppp-skin-card[data-skin=\"organic\"] .urppp-skin-apply.is-current{background:#5C4033}"
     },
     {
       "id": "brutal",
@@ -64,7 +64,7 @@
         "#000000",
         "#CCFF00"
       ],
-      "cardCss": ".urppp-skin-card[data-skin=\"brutal\"]{background:#fff;color:#000;border-radius:0;border:3px solid #000;box-shadow:5px 5px 0 #000!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply{background:#000;color:#CCFF00;border-radius:0;border:2px solid #000;box-shadow:3px 3px 0 #000}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply.is-current{background:#CCFF00;color:#000}.urppp-skin-card[data-skin=\"brutal\"] .urppp-set-btn.ghost{background:#fff;color:#000;border:2px solid #000;border-radius:0;box-shadow:2px 2px 0 #000}"
+      "cardCss": ".urppp-skin-card[data-skin=\"brutal\"]{background:#fff;color:#000;border-radius:0;border:3px solid #000;box-shadow:5px 5px 0 #000!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply{background:#ff006e;color:#000;border-radius:0;border:2px solid #000;box-shadow:3px 3px 0 #000}.urppp-skin-card[data-skin=\"brutal\"] .urppp-skin-apply.is-current{background:#ccff00;color:#000}"
     },
     {
       "id": "neu",
@@ -85,7 +85,7 @@
         "#B8BCC2",
         "#FFFFFF"
       ],
-      "cardCss": ".urppp-skin-card[data-skin=\"neu\"]{background:#E0E5EC;color:#4F5258;border-radius:18px;border:none;box-shadow:6px 6px 12px #B8BCC2,-6px -6px 12px #fff!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply{background:#E0E5EC;color:#4F5258;border-radius:14px;box-shadow:4px 4px 8px #B8BCC2,-4px -4px 8px #fff;border:none}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply.is-current{color:#2563eb;background:#EDF1F5}.urppp-skin-card[data-skin=\"neu\"] .urppp-set-btn.ghost{background:#E0E5EC;color:#4F5258;border:none;border-radius:12px;box-shadow:3px 3px 6px #B8BCC2,-3px -3px 6px #fff}"
+      "cardCss": ".urppp-skin-card[data-skin=\"neu\"]{background:#E0E5EC;color:#4F5258;border-radius:18px;border:none;box-shadow:6px 6px 12px #B8BCC2,-6px -6px 12px #fff!important;padding-bottom:52px}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply{background:#E0E5EC;color:#4F5258;border-radius:14px;box-shadow:4px 4px 8px #B8BCC2,-4px -4px 8px #fff;border:none}.urppp-skin-card[data-skin=\"neu\"] .urppp-skin-apply.is-current{color:#2563eb;background:#EDF1F5}"
     },
     {
       "id": "assist",
