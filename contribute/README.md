@@ -24,3 +24,11 @@ node contribute/check.mjs 你的-catalog.json 你的主题.css
 - **自建源（去中心化）**：自建仓库放产物与你的 `catalog.json`，在主插件「设置 → 商店 → 仓库源」添加地址即可，无需审核。
 
 详见 [DEV_GUIDELINES.md 的双轨投稿方式](../DEV_GUIDELINES.md)。
+
+## 自建源收录进官方目录
+
+自建源稳定运行后，可以申请收录进官方「仓库源」界面的收录列表，让全部用户一键添加：
+
+1. 确保你的 \catalog.json\ 通过自检（含 \signature\ 公钥更佳，安装前可自动验签）；
+2. 编辑本仓库根目录的 \sources.json\，在 \sources\ 数组追加一条：\{ "id": "唯一id", "name": "源名称", "author": "署名", "url": "https://…/catalog.json", "description": "一句话简介" }\；
+3. 提交 PR 并附自检输出与源地址可访问性说明，审核合并后即出现在所有用户的仓库源界面。
