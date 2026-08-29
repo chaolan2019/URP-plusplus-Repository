@@ -24,6 +24,7 @@ node contribute/check.mjs 你的-catalog.json 你的主题.css
 - **自建源（去中心化）**：自建仓库放产物与你的 `catalog.json`，在主插件「设置 → 商店 → 仓库源」添加地址即可，无需审核。
 
 详见 [DEV_GUIDELINES.md 的双轨投稿方式](../DEV_GUIDELINES.md)。
+> **局域网源提示**：若自建源部署在内网地址（如 192.168.x.x），用户首次添加时 Tampermonkey 会弹一次连接授权，允许后不再询问；回环地址（127.0.0.1 / localhost）已内置白名单，直接可用。
 
 ## 自建源收录进官方目录
 
