@@ -51,3 +51,5 @@
 - **方式二（去中心化）**：自建仓库放产物 + 自己的 `catalog.json`，在主插件「仓库源」添加该源 URL（条目需带 `signature`）。
 
 详细流程见 [开发指南——双轨投稿](./DEV_GUIDELINES.md#八双轨投稿方式)。
+> **快捷工具**：[contribute/](./contribute/) 目录提供主题骨架模板、catalog 条目模板与投稿自检脚本（
+ode contribute/check.mjs 你的-catalog.json 你的主题.css），提 PR 前跑一遍全绿更快合并。
