@@ -1,6 +1,14 @@
 {
   "name": "SCU URP++ 第三方仓库源目录",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "updated": "2026-08-30",
-  "sources": []
+  "sources": [
+    {
+      "id": "official",
+      "name": "SCU URP++ 官方商店仓库",
+      "author": "Chao_Lan",
+      "url": "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/catalog.json",
+      "description": "URP++ 官方主题与插件清单（内置拉取；添加后可独立管理）"
+    }
+  ]
 }
