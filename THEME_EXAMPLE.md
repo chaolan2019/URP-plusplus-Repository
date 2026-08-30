@@ -67,6 +67,7 @@ html[data-urppp-skin="organic"]{
   --text:#3F2E24!important; --text-secondary:#6B5346!important; --text-muted:#8A7364!important;
   --border:#E7E0D6!important; --border-focus:#8B9D77!important;
   --primary:#5C4033!important; --primary-hover:#4A3329!important; --ring:rgba(92,64,51,.16)!important;
+  --success:#5F8B5F!important; --danger:#A05E5C!important; --warning:#B8924B!important; --info:#5A7A8F!important;
 }
 ```
 
@@ -80,8 +81,11 @@ html.urppp-theme-dark[data-urppp-skin="organic"]{
   --border:#4A3B30!important; --border-focus:#A3B58A!important;
   --primary:#C4A484!important; --primary-hover:#D4B896!important; --ring:rgba(196,164,132,.22)!important;
   --shadow:0 8px 24px rgba(0,0,0,.4)!important;
+  --success:#8FB19A!important; --danger:#C9908D!important; --warning:#C8A76C!important; --info:#91AAB9!important;
 }
 ```
+
+**语义色变量（`--success` / `--danger` / `--warning` / `--info`）**：主插件所有「状态色」统一由这 4 个变量驱动（状态文字、按钮、徽章、alert、toast、成绩格、ztree 节点等）。**第三方主题应覆盖这 4 个变量**（亮暗两套），否则状态色会用主插件默认值（亮色 `#15803D`/`#B53434` 系、暗色自动变浅）。覆盖后状态色即跟随主题气质。
 
 （3）**背景纹理**（可选）
 
