@@ -2,7 +2,7 @@
           html[data-urppp-skin="brutal"].urppp-theme-dark{
             --bg:#000!important;--surface:#0a0a0a!important;--input-bg:#0a0a0a!important;
             --text:#fff!important;--text-secondary:#fff!important;--text-muted:#fff!important;
-            --border:#fff!important;--border-focus:#fff!important;--shadow:6px 6px 0 #fff!important;
+            --border:#fff!important;--border-focus:#fff!important;--shadow:6px 6px 0 #fff!important;--success:#4ADE80!important;--danger:#FF6B6B!important;--warning:#FFD93D!important;--info:#4DABF7!important;
           }
 
           html[data-urppp-skin="brutal"].urppp-theme-dark body,
