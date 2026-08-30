@@ -127,105 +127,142 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 }
 ```
 
-### 1.3b 主题可美化控件全清单（对照检查，避免漏项）
+### 1.3b 主题可美化控件全清单（对照官方主题，避免漏项）
 
-> 以下是从主插件全部主题化组件中整理的**完整控件清单**（参考官方 neu.css，覆盖最全）。写主题 CSS 时逐项对照，遗漏会导致对应区域"漏美化"。所有选择器均以 `html[data-urppp-skin="<id>"]` 为前缀（下面省略前缀书写）。
+> 以下清单**以官方 4 套主题（flat / organic / brutal / neu）实际覆盖的全部选择器为准**（全量去重 587 项），按区域分组整理。写主题 CSS 时逐组对照，**每个分组至少覆盖核心控件**（标 ★ 的为必覆盖项），否则对应区域会"漏美化"（保持原生 ACE 样式）。所有规则均以 `html[data-urppp-skin="<id>"]` 为前缀（下面省略前缀）。
 
-**A. 页面骨架**
+**A. 页面骨架与布局** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 页面背景 | `body` | 全局底色（变量 `--bg`） |
-| 内容容器 | `.main-container`, `.main-content`, `.main-content-inner`, `.page-content`, `#page-content-template` | 主体内容区背景/内边距 |
-| 清爽模式根 | `#urppp-clean-root` | 清爽模式整体容器 |
-| 顶栏 | `#navbar`, `.navbar` | 导航条背景/高度 |
-| 侧栏 | `#sidebar`, `.sidebar` | 左侧菜单栏 |
-| 面包屑 | `.breadcrumbs`, `#breadcrumbs` | 顶部路径条 |
+| 页面背景 | `body` ★ | 全局底色（`--bg`） |
+| 内容容器 | `.main-container`, `.main-content`, `.main-content-inner`, `.page-content`, `#page-content-template` ★ | 主体内容区 |
+| 清爽根 | `#urppp-clean-root` ★ | 清爽模式整体 |
+| 顶栏 | `#navbar`, `.navbar`, `.navbar .btn`, `.navbar a.btn`, `.navbar button`, `.navbar-toggle` ★ | 导航条 |
+| 顶栏用户区 | `.ace-nav>li>a`, `.ace-nav>li>a.btn`, `.nav-user-photo` | 右侧用户项 |
+| 顶栏操作区 | `.header .right_top_oper .btn`, `.header .right_top_oper a` | 顶部操作按钮 |
+| 侧栏 | `#sidebar`, `.sidebar` ★ | 左侧菜单 |
+| 侧栏折叠 | `.menu-toggler`, `#menu-toggler`, `.urppp-sidebar-toggle` | 折叠开关 |
+| 面包屑 | `.breadcrumbs`, `#breadcrumbs` | 路径条 |
 
-**B. 卡片与面板**
+**B. 卡片与面板** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 通用卡片 | `.widget-box`, `.panel`, `.well`, `.modal-content`, `.urppp-card`, `.urppp-stat-card`, `.infobox` | 页面上所有卡片容器 |
-| 清爽卡片 | `#urppp-clean-root .uc-card` | 清爽模式卡片 |
-| 卡片头 | `.widget-header`, `.panel-heading`, `.urppp-card-header`, `.modal-header`, `.uc-hd` | 卡片标题区 |
-| 卡片体 | `.widget-main`, `.panel-body`, `.urppp-card-body`, `.modal-body` | 卡片内容区 |
-| 用户信息 | `.profile-user-info`, `.profile-user-info-striped`, `.profile-info-row`, `.profile-info-name`, `.profile-info-value` | 个人信息面板 |
-| 设置面板 | `#urppp-settings-panel`, `.urppp-set-sec` | 主插件设置面板 |
+| 通用卡片 | `.widget-box`, `.panel`, `.well`, `.modal-content`, `.urppp-card`, `.urppp-stat-card`, `.infobox`, `.thumbnail` ★ | 全部卡片容器 |
+| 信息框 | `.infobox-container .infobox`, `.page-content .infobox` | 统计信息框 |
+| 卡片头 | `.widget-header`, `.widget-title`, `.panel-heading`, `.urppp-card-header`, `.modal-header` ★ | 标题区 |
+| 卡片体 | `.widget-main`, `.panel-body`, `.urppp-card-body`, `.modal-body` ★ | 内容区 |
+| 用户信息 | `.profile-user-info`, `.profile-user-info-striped`, `.profile-info-row`, `.profile-info-name`, `.profile-info-value` ★ | 个人信息 |
+| 仪表盘卡 | `.urppp-db-card`, `.urppp-db-panel`, `#urppp-dashboard .widget-box`, `#urppp-dashboard .urppp-card` | 仪表盘 |
+| 设置面板 | `#urppp-settings-panel` ★ | 主插件设置（详见 G） |
 
-**C. 按钮**
+**C. 按钮** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 通用按钮 | `.btn:not(.btn-app)`, `#urppp-root .ubtn`, `#urppp-nav-clean`, `#urppp-nav-cal` | 默认按钮 |
-| 主按钮 | `.btn-primary:not(.btn-app)`, `.btn-info:not(.btn-app)` | 主要操作按钮 |
-| 成功/警告/危险 | `.btn-success`, `.btn-warning`, `.btn-danger` | 状态按钮 |
-| 应用胶囊按钮 | `.btn-app`, `#personalApplication .btn-app` | 首页应用入口胶囊 |
-| 禁用态 | `button:disabled`, `.btn.disabled`, `.urppp-theme-disabled` | 禁用样式 |
-| hover/active | 各按钮的 `:hover` / `:active` | 交互反馈必写 |
+| 通用按钮 | `.btn`, `a.btn`, `button.btn`, `.btn:not(.btn-app)`, `#urppp-root .ubtn`, `#urppp-root .ut button`, `#urppp-nav-clean`, `#urppp-nav-cal` ★ | 默认按钮 |
+| 主按钮 | `.btn-primary`, `.btn-info`, `#urppp-root .ubtn` ★ | 主要操作 |
+| 状态按钮 | `.btn-success`, `.btn-warning`, `.btn-danger`, `.btn-info:hover`, `.btn-primary:hover` ★ | 成功/警告/危险 |
+| 应用胶囊 | `.btn-app`, `a.btn-app`, `button.btn-app`, `#personalApplication .btn-app`, `#urppp-dashboard .btn-app` ★ | 首页应用入口 |
+| 按钮变体 | `.btn-white`, `.btn-default`, `.btn-link`, `.btn-purple`, `.btn-minier`, `.btn-sm`, `.btn-xs` | 次要变体 |
+| 按钮组 | `.btn-group>.btn`, `.btn-group-vertical` | 分组按钮 |
+| 交互态 | `.btn:hover`, `.btn:active`, `.btn.active`, `.btn-app:hover`, `.btn-app:active` ★ | hover/active |
+| 禁用 | `button:disabled`, `.btn.disabled`, `.urppp-theme-disabled` | 禁用态 |
 
-**D. 表单**
+**D. 表单** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 输入框 | `input.form-control`, `select.form-control`, `textarea.form-control`, `input[type="text"]`, `input[type="search"]` 等 | 输入/选择/文本域 |
-| placeholder | `input::placeholder`, `textarea::placeholder` | 占位符颜色 |
-| 聚焦 | `input.form-control:focus` 等 | 聚焦边框（`--border-focus`） |
-| 下拉菜单 | `.dropdown-menu`, `.popover`, `.chosen-drop`, `.select2-drop` | 下拉面板 |
-| 下拉项 | `.dropdown-menu>li>a`, `.chosen-results li` | 下拉选项 |
+| 输入框 | `input.form-control`, `select.form-control`, `textarea.form-control`, `.form-control` ★ | 基本输入 |
+| type 全系列 | `input[type="text"]`, `input[type="search"]`, `input[type="number"]`, `input[type="password"]`, `input[type="email"]`, `input[type="tel"]`, `input[type="url"]`, `select`, `textarea`, `fieldset` ★ | 全部输入类型 |
+| 占位符 | `input::placeholder`, `textarea::placeholder` | placeholder 色 |
+| 聚焦 | 各输入 `:focus`, `input:focus`, `select:focus`, `textarea:focus` ★ | 聚焦边框 |
+| 搜索框 | `#form-search .nav-search-input`, `#search-input`, `.nav-search .nav-search-input`, `input#search-input` ★ | 顶栏搜索 |
+| chosen 下拉 | `.chosen-container-single .chosen-single`, `.chosen-container-active .chosen-single`, `.chosen-container-multi .chosen-choices`, `.chosen-container .chosen-drop`, `.chosen-results li`, `.chosen-results li.highlighted`, `.chosen-results li.result-selected` | 下拉选择器 |
+| select2 | `.select2-drop` | select2 下拉 |
 
-**E. 表格**
+**E. 表格** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 表格容器 | `.urppp-table-wrap`, `.table-responsive` | 表格外层 |
-| 表格 | `.table`, `.table-bordered`, `.dataTable` | 通用表格 |
-| 表头 | `.table>thead>tr>th` | 表头单元格 |
-| 表体 | `.table>tbody>tr>td` | 数据单元格 |
-| 行悬停 | `.table-hover>tbody>tr:hover>td` | 行 hover |
-| 课程表 | `#courseTable`, `#courseTable th/td`, `.class_div.box_font`, `div[class*="div-kcb"]` | 课表单元格 |
-| 通知表 | `table.urppp-notice-table` 及行 hover | 通知/公告表 |
-| 清爽成绩表 | `#urppp-clean-root table.uc-table th/td`, `tbody tr:hover`, `tr.is-on` | 清爽成绩表格 |
+| 表格容器 | `.urppp-table-wrap`, `.table-responsive` | 外层 |
+| 表格 | `.table`, `.table-bordered`, `.dataTable`, `table` ★ | 通用 |
+| 表头 | `.table>thead>tr>th`, `.table>thead>tr>td`, `.table-bordered>thead>tr>th`, `.dataTable>thead>tr>th` ★ | 表头 |
+| 表体 | `.table>tbody>tr>td`, `.table>tbody>tr>th`, `.table-bordered>tbody>tr>td`, `.dataTable>tbody>tr>td` ★ | 数据单元格 |
+| 行悬停 | `.table-hover>tbody>tr:hover>td`, `.table>tbody>tr:hover>td`, `.dataTable>tbody>tr:hover>td` ★ | hover 行 |
+| 状态背景 | `body .green_background`, `body .red_background`, `body .table>tbody>tr>td.green_background` 等 ★ | 课表/成绩状态色 |
+| 通知表 | `body table.urppp-notice-table>tbody>tr`, `.urppp-notice-row:hover`, `.table-striped>tbody>tr:nth-of-type(odd/even)` | 通知/公告 |
+| 通知卡 | `body .urppp-notice-card` | 通知卡片 |
 
-**F. 状态与提示**
+**F. 状态与提示** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 提示条 | `.alert`, `.alert-success/info/warning/danger` | 页面提示 |
-| 徽章 | `.label`, `.badge` 及各状态变体 | 标签/计数 |
-| 遮罩 | `#urppp-settings-mask`, `.uc-mask`, `#urppp-update-changelog.open` | 弹层遮罩 |
+| 提示条 | `.alert`, `.alert-success`, `.alert-info`, `.alert-warning`, `.alert-danger` | 页面提示 |
+| 徽章 | `.label`, `.badge` 及 `.label-success/info/warning/danger`, `.badge-success/info/warning/danger` ★ | 标签/计数 |
+| 遮罩 | `#urppp-settings-mask`, `#urppp-clean-root .uc-mask`, `#urppp-update-changelog.open` | 弹层遮罩 |
+| 弹出层 | `.dropdown-menu`, `.dropdown-menu>li>a`, `.dropdown-menu>li>a:hover`, `.popover` ★ | 下拉/气泡 |
 
-**G. 导航与分页**
+**G. 设置面板（主插件）** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 侧栏链接 | `.nav-list>li>a`, `.urppp-nav-link` 及 hover/active | 侧栏菜单项 |
-| 分页 | `.pagination>li>a/span`, `.urppp-page-chip`, `.urppp-page-chip-active` | 分页器 |
-| 主题圆点 | `.urppp-nav-dot`, `#urppp-dots span` 及 `.ac` | 顶栏主题切换圆点 |
+| 面板 | `#urppp-settings-panel` ★ | 整体 |
+| 头部 | `#urppp-settings-panel .urppp-set-head`, `.urppp-set-title`, `.urppp-set-close` ★ | 标题/关闭 |
+| 标签页 | `.urppp-set-tabs`, `.urppp-set-tab`, `.urppp-set-tab.ac`, `.urppp-set-tab.ac::after` ★ | 顶部 tab |
+| 分区 | `.urppp-set-sec` ★ | 各设置区 |
+| 模式切换 | `.urppp-set-modes`, `.urppp-set-mode`, `.urppp-set-mode.ac`, `.urppp-set-follow`, `.urppp-set-follow.ac`, `.urppp-set-follow-row` ★ | 亮暗/跟随 |
+| 配色方案 | `.urppp-set-schemes`, `.urppp-set-scheme`, `.urppp-set-scheme.ac`, `.urppp-set-scheme-preview span` ★ | 色板选择 |
+| 按钮 | `.urppp-set-btn`, `.urppp-set-btn:not(.ghost)` ★ | 设置按钮 |
+| 辅助项 | `.urpppp-actions + .urpppp-status`, `.urpppp-entry-grid + .urpppp-tip`, `.urpppp-switches + .urpppp-grid`, `.urpppp-switches + .urpppp-sub`, `#urppp-set-auto-update + .urppp-set-tip`, `#urppp-set-check-update + #urppp-set-update-status`, `#urppp-set-clean-default + .urppp-set-tip` | 插件区/更新区提示 |
 
-**H. 清爽模式（dashboard）专属**
+**H. 导航与分页** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 桌面网格 | `#urppp-clean-root .uc-desktop`, `.uc-col` | 清爽桌面布局 |
-| 统计卡 | `#urppp-dashboard .urppp-stat-card`, `.uc-stat`, `.uc-metric` | 数据统计卡 |
-| 头部 | `.uc-top`, `.uc-brand`, `.uc-name`, `.uc-avatar` | 清爽头部 |
-| 标签页 | `.uc-hd-tabs .uc-sa-tab`, `.uc-sa-tab.ac`, `.uc-sa-more` | 成绩分析标签 |
-| GPA/徽章 | `.uc-gpa`, `.uc-cd-chip`, `.uc-attr-pill` | 绩点/学分徽章 |
-| 课程格 | `.uc-lesson`, `.uc-grid-cell`, `.uc-course-sub` | 课表格子 |
-| 评分格 | `.uc-score-cell` 及 `.pass/.fail/.uneval` | 成绩状态格 |
-| 预约槽 | `.uc-slot` 及 `.free/.kind-course/.kind-exam/.kind-lab/.kind-borrow` | 空教室预约槽 |
-| 服务入口 | `.uc-svc`, `.uc-services` | 应用服务入口 |
+| 侧栏菜单 | `.nav-list>li>a`, `.nav-list>li>a:hover`, `.nav-list>li.active>a`, `.urppp-nav-link`, `.urppp-nav-link:hover`, `.urppp-nav-item.active>a`, `.urppp-nav-item.open>a` ★ | 菜单项 |
+| 标签页 | `.nav-tabs`, `.nav-tabs>li>a`, `.nav-tabs>li.active>a` ★ | 页面 tab |
+| 分页 | `.pagination>li>a`, `.pagination>li>span`, `.pagination>.active>a`, `.urppp-page-chip`, `.urppp-page-chip-active` ★ | 分页器 |
+| 主题圆点 | `.urppp-nav-dot`, `.urppp-nav-dot.ac`, `#urppp-dots span`, `#urppp-nav-theme .urppp-nav-dot`, `#urppp-clean-root .uc-top-theme .urppp-nav-dot` ★ | 顶栏/清爽主题切换 |
+| 导航按钮 | `#urppp-nav-clean`, `#urppp-nav-cal`, `#urppp-nav-theme button`, `#urppp-nav-theme .urppp-nav-settings` | 清爽/校历入口 |
 
-**I. 其他**
+**I. 清爽模式（dashboard）** ★
 
-| 控件 | 选择器 | 说明 |
+| 控件 | 选择器 | 备注 |
 |---|---|---|
-| 标题 | `h1`~`h4`, `.page-header`, `.urppp-set-title` | 页面/区块标题（字体） |
-| 焦点环 | `a:focus-visible`, `button:focus-visible`, `[tabindex]:focus-visible` | 键盘焦点可见性 |
-| 响应式 | `@media (max-width:900px)` 内 `#sidebar`, `.uc-shell` 等 | 移动端侧栏/清爽布局 |
+| 桌面 | `#urppp-clean-root`, `.uc-desktop`, `.uc-col`, `.uc-shell-inner`, `.uc-bd > div` ★ | 布局容器 |
+| 头部 | `.uc-top`, `.uc-brand`, `.uc-name`, `.uc-avatar`, `.uc-avatar img`, `.uc-top-actions .uc-btn`, `.uc-top-theme .urppp-nav-dot` ★ | 清爽头部 |
+| 卡片 | `.uc-card`, `.uc-card:hover` ★ | 清爽卡片 |
+| 按钮 | `.uc-btn`, `.uc-btn.primary`, `.uc-btn:not(.primary)`, `.uc-btn:hover`, `button.uc-btn` ★ | 清爽按钮 |
+| 标签页 | `.uc-tabbar`, `.uc-tabbar button`, `.uc-tabbar button:hover`, `.uc-hd-tabs .uc-sa-tab`, `.uc-sa-tab.ac`, `.uc-sa-tab.ac::after`, `.uc-sa-more`, `.uc-sa-more:hover` ★ | 成绩分析标签 |
+| 统计 | `.uc-gpa`, `.uc-metric`, `.uc-cd-chip`, `.uc-attr-pill` ★ | 绩点/学分 |
+| 课表 | `.uc-lesson`, `.uc-lesson:hover`, `.uc-grid-cell`, `.uc-course-sub`, `[data-score]` ★ | 课程格 |
+| 成绩 | `.uc-score-pane`, `.uc-score-pane h5`, `.uc-score-cell`, `.uc-score-cell.pass/.fail/.uneval`, `.uc-score-grid > *`, `#uc-score-wrap` ★ | 成绩区域 |
+| 图表卡 | `.uc-sa-chart-card` | 成绩图表 |
+| 用户档案 | `.uc-profile` | 清爽个人页 |
+| 弹窗 | `.uc-modal`, `.uc-modal-hd` | 清爽弹窗 |
+| 服务入口 | `.uc-svc`, `.uc-svc:hover`, `.uc-svc *`, `.uc-svc:nth-child(4n+1~3)` ★ | 应用服务 |
+| 退出/刷新/设置 | `#uc-exit`, `#uc-refresh`, `#uc-settings`, `#urppp-clean-entry` | 清爽右上操作 |
+| 成绩入口 | `#urppp-clean-root .uc-build-grid button` 及 hover | 构建网格 |
 
-> **对照方法**：写完后用「搜索」逐项确认你的 CSS 覆盖了 A~I 每个分组（至少每个分组 1~2 个核心控件）。官方 neu.css 覆盖最全（133 组），可对照其写法。
+**J. 校历 / 课程日历（fc-*）**
+
+| 控件 | 选择器 | 备注 |
+|---|---|---|
+| 日历容器 | `#urppp-left .fc`, `#urppp-left #main-calendar`, `#urppp-left .fc-view` | 校历 |
+| 日历按钮 | `.fc .fc-button`, `.fc-button`, `.fc-button-group > *`, `.fc-state-default`, `.fc-today-button`, `.fc-next-button`, `.fc-prev-button`, `.fc button` | 日历工具按钮 |
+| 日历标题 | `.fc .fc-toolbar h2`, `.fc-toolbar h2`, `#urppp-left .fc-toolbar h2` | 月份标题 |
+
+**K. 链接与文字** ★
+
+| 控件 | 选择器 | 备注 |
+|---|---|---|
+| 链接 | `a`, `a:link`, `a:visited`, `a:hover`, `a:focus` ★ | 全局链接 |
+| 标题 | `h1`~`h5`, `.page-header` ★ | 标题字体/色 |
+| 焦点环 | `a:focus-visible`, `button:focus-visible`, `[tabindex]:focus-visible` ★ | 键盘焦点 |
+
+> **对照方法**：写完用「搜索」逐组确认 A~K 每个分组至少覆盖 1~2 个核心控件（标 ★ 项）。官方 neu.css 覆盖最全（133 组选择器），brutal 覆盖设置面板最全，flat 覆盖清爽模式细节最全，可对照其写法。完全没覆盖某分组 = 该区域测试时会露原生样式。
 
 ---
 
