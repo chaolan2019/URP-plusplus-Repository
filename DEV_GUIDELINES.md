@@ -88,6 +88,7 @@ URP++-Repository/
 - 所有规则必须限定于 `html[data-urppp-skin="<id>"]` 作用域，避免影响其他主题。
 - 覆盖样式时使用 `!important` 与高 specificity；避免使用 `:not()` 做宽泛排除，以免误伤商店预览按钮。
 - 支持暗色（`dark: true`）时，提供暗色变体 `html[data-urppp-skin="<id>"].urppp-theme-dark`。
+- **控件覆盖完整性**：按 [THEME_EXAMPLE.md](./THEME_EXAMPLE.md#13b-主题可美化控件全清单对照检查避免漏项) 的 A~I 分组（页面骨架 / 卡片面板 / 按钮 / 表单 / 表格 / 状态提示 / 导航分页 / 清爽模式 / 其他）逐项对照，每个分组至少覆盖核心控件，避免测试时漏美化。
 
 ### 3.2 catalog 条目
 
@@ -98,6 +99,14 @@ URP++-Repository/
 ### 3.3 卡片样式（cardCss）
 
 第三方主题必须在 catalog 的 `cardCss` 中提供卡片展示样式。作用域为 `.urppp-skin-card[data-skin="<id>"]`。
+
+**卡样式三种来源（主插件按优先级取，均写 `GM urppp_card_css_<id>` 缓存）**：
+
+1. **catalog 条目的 `cardCss` 字段**（投稿 / 自建源）——下载时缓存到本地，优先级最高；
+2. **主题 CSS 文件内自带的 `.urppp-skin-card[data-skin="<id>"]` 规则段**（本地导入）——主插件导入时自动提取缓存，优先于自动生成；
+3. **自动生成默认卡样式**（从主题变量 `--surface`/`--text`/`--border`/`--primary` 推导亮暗两套 + 主/次要按钮 + hover）——未提供 cardCss 时的兜底，保证卡不裸奔。
+
+> 本地导入主题（设置 → 添加本地主题）**推荐在 CSS 文件末尾直接写卡样式段**（等效 catalog 的 cardCss），导入即生效且完全由你掌控；不写则走自动生成（样式跟随主题主色，但不保证你想要的细节）。
 
 **cardCss 应覆盖的内容**：
 
@@ -277,6 +286,7 @@ window.__urppppAssist = {
 | 主题 CSS 以 `button:not(...)` 宽泛覆盖 | 应用主题后商店按钮被刷成该主题样式 | 按钮复用 `urppp-skin-apply`（被 `:not(.urppp-skin-apply)` 排除） |
 | 暗色按钮规则缺失 `background` | 按钮背景继承全局 `--input-bg`（当前主题）而异常 | 暗色按钮补 `background: transparent` 或复用 apply 样式 |
 | catalog `cardCss` 缺失次要按钮色/hover | 脱离后仓库/删除按钮显示默认色、悬停无动效 | `cardCss` 须覆盖 `.urppp-store-repo`/`.urppp-store-del` 主题色 + hover 动效 + 暗色变体 |
+| 本地导入主题卡完全原生无样式 | 皮肤卡/主题管理无任何主题样式 | 主插件已兜底：CSS 内含 `.urppp-skin-card` 段则提取，否则从主题变量自动生成；推荐在 CSS 末尾写卡样式段 |
 | catalog 请求无超时 | 网络异常时商店停留在加载态 | 使用 `Promise.allSettled` + 5 秒超时 |
 | 应用 / 删除主题后不刷新 | 「使用中」等状态不更新，删除正用主题残留缓存 | 应用 / 删除后立即刷新列表；删除正用主题回退默认主题 |
 
