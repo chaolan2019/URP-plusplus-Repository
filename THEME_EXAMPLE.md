@@ -127,7 +127,116 @@ html[data-urppp-skin="organic"] #urppp-clean-root .uc-brand{
 }
 ```
 
+### 1.3b 主题可美化控件全清单（对照检查，避免漏项）
+
+> 以下是从主插件全部主题化组件中整理的**完整控件清单**（参考官方 neu.css，覆盖最全）。写主题 CSS 时逐项对照，遗漏会导致对应区域"漏美化"。所有选择器均以 `html[data-urppp-skin="<id>"]` 为前缀（下面省略前缀书写）。
+
+**A. 页面骨架**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 页面背景 | `body` | 全局底色（变量 `--bg`） |
+| 内容容器 | `.main-container`, `.main-content`, `.main-content-inner`, `.page-content`, `#page-content-template` | 主体内容区背景/内边距 |
+| 清爽模式根 | `#urppp-clean-root` | 清爽模式整体容器 |
+| 顶栏 | `#navbar`, `.navbar` | 导航条背景/高度 |
+| 侧栏 | `#sidebar`, `.sidebar` | 左侧菜单栏 |
+| 面包屑 | `.breadcrumbs`, `#breadcrumbs` | 顶部路径条 |
+
+**B. 卡片与面板**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 通用卡片 | `.widget-box`, `.panel`, `.well`, `.modal-content`, `.urppp-card`, `.urppp-stat-card`, `.infobox` | 页面上所有卡片容器 |
+| 清爽卡片 | `#urppp-clean-root .uc-card` | 清爽模式卡片 |
+| 卡片头 | `.widget-header`, `.panel-heading`, `.urppp-card-header`, `.modal-header`, `.uc-hd` | 卡片标题区 |
+| 卡片体 | `.widget-main`, `.panel-body`, `.urppp-card-body`, `.modal-body` | 卡片内容区 |
+| 用户信息 | `.profile-user-info`, `.profile-user-info-striped`, `.profile-info-row`, `.profile-info-name`, `.profile-info-value` | 个人信息面板 |
+| 设置面板 | `#urppp-settings-panel`, `.urppp-set-sec` | 主插件设置面板 |
+
+**C. 按钮**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 通用按钮 | `.btn:not(.btn-app)`, `#urppp-root .ubtn`, `#urppp-nav-clean`, `#urppp-nav-cal` | 默认按钮 |
+| 主按钮 | `.btn-primary:not(.btn-app)`, `.btn-info:not(.btn-app)` | 主要操作按钮 |
+| 成功/警告/危险 | `.btn-success`, `.btn-warning`, `.btn-danger` | 状态按钮 |
+| 应用胶囊按钮 | `.btn-app`, `#personalApplication .btn-app` | 首页应用入口胶囊 |
+| 禁用态 | `button:disabled`, `.btn.disabled`, `.urppp-theme-disabled` | 禁用样式 |
+| hover/active | 各按钮的 `:hover` / `:active` | 交互反馈必写 |
+
+**D. 表单**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 输入框 | `input.form-control`, `select.form-control`, `textarea.form-control`, `input[type="text"]`, `input[type="search"]` 等 | 输入/选择/文本域 |
+| placeholder | `input::placeholder`, `textarea::placeholder` | 占位符颜色 |
+| 聚焦 | `input.form-control:focus` 等 | 聚焦边框（`--border-focus`） |
+| 下拉菜单 | `.dropdown-menu`, `.popover`, `.chosen-drop`, `.select2-drop` | 下拉面板 |
+| 下拉项 | `.dropdown-menu>li>a`, `.chosen-results li` | 下拉选项 |
+
+**E. 表格**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 表格容器 | `.urppp-table-wrap`, `.table-responsive` | 表格外层 |
+| 表格 | `.table`, `.table-bordered`, `.dataTable` | 通用表格 |
+| 表头 | `.table>thead>tr>th` | 表头单元格 |
+| 表体 | `.table>tbody>tr>td` | 数据单元格 |
+| 行悬停 | `.table-hover>tbody>tr:hover>td` | 行 hover |
+| 课程表 | `#courseTable`, `#courseTable th/td`, `.class_div.box_font`, `div[class*="div-kcb"]` | 课表单元格 |
+| 通知表 | `table.urppp-notice-table` 及行 hover | 通知/公告表 |
+| 清爽成绩表 | `#urppp-clean-root table.uc-table th/td`, `tbody tr:hover`, `tr.is-on` | 清爽成绩表格 |
+
+**F. 状态与提示**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 提示条 | `.alert`, `.alert-success/info/warning/danger` | 页面提示 |
+| 徽章 | `.label`, `.badge` 及各状态变体 | 标签/计数 |
+| 遮罩 | `#urppp-settings-mask`, `.uc-mask`, `#urppp-update-changelog.open` | 弹层遮罩 |
+
+**G. 导航与分页**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 侧栏链接 | `.nav-list>li>a`, `.urppp-nav-link` 及 hover/active | 侧栏菜单项 |
+| 分页 | `.pagination>li>a/span`, `.urppp-page-chip`, `.urppp-page-chip-active` | 分页器 |
+| 主题圆点 | `.urppp-nav-dot`, `#urppp-dots span` 及 `.ac` | 顶栏主题切换圆点 |
+
+**H. 清爽模式（dashboard）专属**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 桌面网格 | `#urppp-clean-root .uc-desktop`, `.uc-col` | 清爽桌面布局 |
+| 统计卡 | `#urppp-dashboard .urppp-stat-card`, `.uc-stat`, `.uc-metric` | 数据统计卡 |
+| 头部 | `.uc-top`, `.uc-brand`, `.uc-name`, `.uc-avatar` | 清爽头部 |
+| 标签页 | `.uc-hd-tabs .uc-sa-tab`, `.uc-sa-tab.ac`, `.uc-sa-more` | 成绩分析标签 |
+| GPA/徽章 | `.uc-gpa`, `.uc-cd-chip`, `.uc-attr-pill` | 绩点/学分徽章 |
+| 课程格 | `.uc-lesson`, `.uc-grid-cell`, `.uc-course-sub` | 课表格子 |
+| 评分格 | `.uc-score-cell` 及 `.pass/.fail/.uneval` | 成绩状态格 |
+| 预约槽 | `.uc-slot` 及 `.free/.kind-course/.kind-exam/.kind-lab/.kind-borrow` | 空教室预约槽 |
+| 服务入口 | `.uc-svc`, `.uc-services` | 应用服务入口 |
+
+**I. 其他**
+
+| 控件 | 选择器 | 说明 |
+|---|---|---|
+| 标题 | `h1`~`h4`, `.page-header`, `.urppp-set-title` | 页面/区块标题（字体） |
+| 焦点环 | `a:focus-visible`, `button:focus-visible`, `[tabindex]:focus-visible` | 键盘焦点可见性 |
+| 响应式 | `@media (max-width:900px)` 内 `#sidebar`, `.uc-shell` 等 | 移动端侧栏/清爽布局 |
+
+> **对照方法**：写完后用「搜索」逐项确认你的 CSS 覆盖了 A~I 每个分组（至少每个分组 1~2 个核心控件）。官方 neu.css 覆盖最全（133 组），可对照其写法。
+
+---
+
 ### 1.4 卡片样式（cardCss，必填且须完整）
+
+> **卡样式三种来源（主插件按优先级取）**：
+> 1. **catalog 条目的 `cardCss` 字段**（自建源/投稿）——下载时缓存到本地；
+> 2. **主题 CSS 文件内自带的 `.urppp-skin-card[data-skin="<id>"]` 规则段**（本地导入）——导入时自动提取缓存，优先级高于自动生成；
+> 3. **自动生成默认卡样式**（从主题变量 `--surface`/`--text`/`--border`/`--primary` 推导亮暗两套）——未提供 cardCss 时的兜底，保证卡不裸奔。
+>
+> 本地导入时**推荐在 CSS 文件末尾直接写卡样式段**（等效于 catalog 的 cardCss），导入即生效且完全由你掌控：
 
 作用域 `.urppp-skin-card[data-skin="<id>"]`。cardCss 须覆盖：卡片底色/文字色、主按钮 `.urppp-skin-apply`、**次要按钮 `.urppp-store-repo` / `.urppp-store-del`（仓库/删除，须跟主按钮同主题色）**、hover 动效、`is-current`，以及 `html.urppp-theme-dark` 暗色变体。以下值与 catalog 中的实际 `cardCss` 一致：
 
@@ -230,6 +339,8 @@ your-repo/
 **主题（theme）**
 - [ ] 产物所有规则以 `html[data-urppp-skin="<id>"]` 为前缀。
 - [ ] 支持暗色（`dark: true`）时提供 `urppp-theme-dark` 暗色变体，覆盖色板变量与组件。
+- [ ] 按第 1.3b 节控件全清单逐项对照 A~I 分组（骨架/卡片/按钮/表单/表格/状态/导航/清爽模式/其他），每个分组至少覆盖核心控件。
+- [ ] 卡片样式提供完整 cardCss（三种来源任选：catalog 字段 / CSS 文件内 `.urppp-skin-card` 段 / 自动生成兜底；推荐前两种完全掌控）。
 - [ ] catalog 条目包含 `type` / `name` / `description` / `version` / `author` / `repo` / `entry`。
 - [ ] `entry` 至少 2 个 URL 保证降级可用。
 - [ ] 第三方主题在 `cardCss` 提供卡片底色与主按钮样式（不含次要按钮）。
