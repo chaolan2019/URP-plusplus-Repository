@@ -36,7 +36,7 @@
   "entry": [                 // 可下载产物（多 URL，主插件按序降级）
     "https://raw.githubusercontent.com/…/themes/flat.css",
     "https://cdn.jsdelivr.net/gh/…@main/themes/flat.css",
-    "https://gh-proxy.com/…"
+    "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/…"
   ],
   "preview": ["#FFFFFF", "#000000", "#4A4A4A"],
   "cardCss": "…"             // 第三方主题必填；官方主题由主插件内置样式

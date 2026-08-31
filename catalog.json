@@ -14,8 +14,8 @@
       "minAPP": "1.9.4",
       "entry": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/flat.css",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/flat.css",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/flat.css"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/themes/flat.css",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/flat.css"
       ],
       "preview": [
         "#FFFFFF",
@@ -38,8 +38,8 @@
       "minAPP": "1.9.4",
       "entry": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/organic.css",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/organic.css",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/organic.css"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/themes/organic.css",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/organic.css"
       ],
       "preview": [
         "#FAF6F1",
@@ -62,8 +62,8 @@
       "minAPP": "1.9.4",
       "entry": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/brutal.css",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/brutal.css",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/brutal.css"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/themes/brutal.css",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/brutal.css"
       ],
       "preview": [
         "#FFFFFF",
@@ -86,8 +86,8 @@
       "minAPP": "1.9.4",
       "entry": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/neu.css",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/neu.css",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/neu.css"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/themes/neu.css",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/neu.css"
       ],
       "preview": [
         "#E0E5EC",
@@ -110,8 +110,8 @@
       "minAPP": "1.9.0",
       "entry": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/plugins/urpppp.plugin.js",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/plugins/urpppp.plugin.js"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/plugins/urpppp.plugin.js",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/plugins/urpppp.plugin.js"
       ]
     }
   ]

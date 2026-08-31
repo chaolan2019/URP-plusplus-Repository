@@ -41,7 +41,7 @@
   "entry": [
     "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/organic.css",
     "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/themes/organic.css",
-    "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/themes/organic.css"
+    "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/themes/organic.css"
   ],
   "preview": ["#FAF6F1", "#5C4033", "#8B9D77"],
   "dark": true,

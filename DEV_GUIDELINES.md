@@ -59,7 +59,7 @@ URP++-Repository/
   "entry": [                    // 可下载产物，多 URL 降级
     "https://raw.githubusercontent.com/…/themes/flat.css",
     "https://cdn.jsdelivr.net/gh/…@main/themes/flat.css",
-    "https://gh-proxy.com/…"
+    "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/…"
   ],
   "preview": ["#FFFFFF", "#000000"],  // theme 预览色（3 个色值）
 

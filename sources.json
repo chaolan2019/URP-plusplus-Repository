@@ -11,8 +11,8 @@
       "description": "URP++ 官方主题与插件清单（内置拉取；添加后可独立管理）",
       "mirrors": [
         "https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/catalog.json",
-        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/catalog.json",
-        "https://gh-proxy.com/https://raw.githubusercontent.com/chaolan2019/URP-plusplus-Repository/main/catalog.json"
+        "https://gitee.com/chaolan2026/URP-plusplus-Repository/raw/main/catalog.json",
+        "https://cdn.jsdelivr.net/gh/chaolan2019/URP-plusplus-Repository@main/catalog.json"
       ]
     }
   ]
