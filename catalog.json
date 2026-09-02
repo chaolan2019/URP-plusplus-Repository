@@ -80,7 +80,7 @@
       "type": "theme",
       "name": "新拟物",
       "description": "同色双阴影凸起/内凹，立体柔和。支持暗色，不支持动态配色。",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "Chao_Lan",
       "repo": "https://github.com/chaolan2019/URP-plusplus-Repository",
       "minAPP": "1.9.4",
